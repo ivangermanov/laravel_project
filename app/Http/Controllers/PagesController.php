@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class PagesController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+        // Returns view of index page
         return view('pages.index');
     }
 
-    public function about() {
+    public function about()
+    {
+        // Returns view of about page
         return view('pages.about');
     }
 
-    public function greeting($name) {
-        return view('pages.greeting') -> with('name', $name);
+    public function greeting($name)
+    {
+        // Returns view of greeting page
+        // with optional parameter $name
+        // which prints a greeting on screen
+        return view('pages.greeting')->with('name', $name);
     }
 }
