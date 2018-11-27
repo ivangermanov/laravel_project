@@ -20,7 +20,7 @@ class CreateTableBreeds extends Migration
             $table->unsignedTinyInteger('weight');
             $table->text('history');
             $table->text('behaviour');
-            $table->string('img_link', 256);
+            $table->string('img_link')->nullable();
             $table->timestamps();
         });
     }
