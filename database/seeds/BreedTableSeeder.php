@@ -22,7 +22,7 @@ class BreedTableSeeder extends Seeder
                 It is recognizable by its thickly furred double coat,
                  erect triangular ears, and distinctive markings.',
             'behaviour' => 'Outgoing, Alert, Intelligent, Friendly, Gentle',
-            'img_link' => '',
+            'img_link' => Storage::url('public/images/breeds/husky.jpg'),
         ]);
         DB::table('breeds')->insert([
             'breed' => 'Pit bull',
@@ -50,7 +50,7 @@ class BreedTableSeeder extends Seeder
                              cover liability from pit bull bites. Among other roles, pit bulls have served as police dogs,
                               search and rescue dogs, and several have appeared on film.',
             'behaviour' => 'Loyal, Strong-willed, Stubborn, Obedient, Courageous',
-            'img_link' => '',
+            'img_link' => Storage::url('public/images/breeds/pitbull.jpg'),
         ]);
         DB::table('breeds')->insert([
             'breed' => 'German Shepherd',
@@ -60,7 +60,7 @@ class BreedTableSeeder extends Seeder
             In the English language, the breed's officially recognized name is German Shepherd Dog.
              The breed is known as the Alsatian in Britain and Ireland.",
             'behaviour' => 'Active, Self-assured, Intelligent, Curious, Protective',
-            'img_link' => '',
+            'img_link' => Storage::url('public/images/breeds/germanshepherd.jpg'),
         ]);
     }
 }

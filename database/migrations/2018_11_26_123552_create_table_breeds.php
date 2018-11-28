@@ -21,7 +21,6 @@ class CreateTableBreeds extends Migration
             $table->text('history');
             $table->text('behaviour');
             $table->string('img_link')->nullable();
-            $table->timestamps();
         });
     }
 
