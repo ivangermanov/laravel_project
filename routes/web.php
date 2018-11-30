@@ -9,10 +9,11 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PagesController@index')->name('index');
 
-Route::get('/about', 'PagesController@about');
+Route::get('/about', 'PagesController@about')->name('about');
 
-Route::get('/greeting/{name}', 'PagesController@greeting')->name('greeting');
+// Example route with parameter
+// Route::get('/greeting/{name}', 'PagesController@greeting')->name('greeting');

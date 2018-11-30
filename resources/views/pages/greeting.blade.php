@@ -1,7 +1,5 @@
-@extends('layouts.app')
-
-@section('title', 'Greetings')
-
+@extends('layouts.app') 
+@section('title', 'Greetings') 
 @section('content')
-    <p>Hello, {{ $name }}</p>
+<p>Hello, {{ $name }}</p>
 @endsection
