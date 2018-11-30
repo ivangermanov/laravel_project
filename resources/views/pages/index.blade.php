@@ -1,97 +1,11 @@
 @extends('layouts.app') 
 @section('title', 'Homepage') 
 @section('content')
-<header>
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-      <!-- Slide One - Set the background image for this slide in the line below -->
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="http://placehold.it/1900x1080" alt="First slide">
-        <div class="carousel-caption d-none d-md-block">
-          <h3>First Slide</h3>
-          <p>This is a description for the first slide.</p>
-        </div>
-      </div>
-      <!-- Slide Two - Set the background image for this slide in the line below -->
-      <div class="carousel-item">
-        <img class="d-block w-100" src="http://placehold.it/1900x1080" alt="Second slide">
-        <div class="carousel-caption d-none d-md-block">
-          <h3>Second Slide</h3>
-          <p>This is a description for the second slide.</p>
-        </div>
-      </div>
-      <!-- Slide Three - Set the background image for this slide in the line below -->
-      <div class="carousel-item">
-        <img class="d-block w-100" src="http://placehold.it/1900x1080" alt="Second slide">
-        <div class="carousel-caption d-none d-md-block">
-          <h3>Third Slide</h3>
-          <p>This is a description for the third slide.</p>
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-  </div>
-</header>
+  @include('pages.inc_index.header')
 
-<!-- Page Content -->
 <div class="container">
-
-  <h1 class="my-4">Welcome to Modern Business</h1>
-
-  <!-- Marketing Icons Section -->
-  <div class="row">
-    <div class="col-lg-4 mb-4">
-      <div class="card h-100">
-        <h4 class="card-header">Card Title</h4>
-        <div class="card-body">
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">Learn More</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 mb-4">
-      <div class="card h-100">
-        <h4 class="card-header">Card Title</h4>
-        <div class="card-body">
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi
-            similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum
-            sint fuga.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">Learn More</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 mb-4">
-      <div class="card h-100">
-        <h4 class="card-header">Card Title</h4>
-        <div class="card-body">
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">Learn More</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- /.row -->
-
   <!-- Portfolio Section -->
-  <h2>Portfolio Heading</h2>
+  <h2 class="mt-4">Portfolio Heading</h2>
 
   <div class="row">
     <div class="col-lg-4 col-sm-6 portfolio-item">
@@ -173,7 +87,7 @@
   <!-- /.row -->
 
   <!-- Features Section -->
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-lg-6">
       <h2>Modern Business Features</h2>
       <p>The Modern Business template by Start Bootstrap includes:</p>

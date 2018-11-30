@@ -11,6 +11,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{route('about')}}">About</a>
         </li>
+        {{-- <li class="nav-item">
+          <a class="nav-link" href="{{route('breeds')}}">Breeds</a>
+        </li> --}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Blog
