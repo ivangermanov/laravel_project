@@ -23,6 +23,7 @@ class BreedTableSeeder extends Seeder
                  erect triangular ears, and distinctive markings.',
             'behaviour' => 'Outgoing, Alert, Intelligent, Friendly, Gentle',
             'img_link' => Storage::url('public/images/breeds/husky.jpg'),
+            'created_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('breeds')->insert([
             'breed' => 'Pit bull',
@@ -51,6 +52,7 @@ class BreedTableSeeder extends Seeder
                               search and rescue dogs, and several have appeared on film.',
             'behaviour' => 'Loyal, Strong-willed, Stubborn, Obedient, Courageous',
             'img_link' => Storage::url('public/images/breeds/pitbull.jpg'),
+            'created_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('breeds')->insert([
             'breed' => 'German Shepherd',
@@ -61,6 +63,7 @@ class BreedTableSeeder extends Seeder
              The breed is known as the Alsatian in Britain and Ireland.",
             'behaviour' => 'Active, Self-assured, Intelligent, Curious, Protective',
             'img_link' => Storage::url('public/images/breeds/germanshepherd.jpg'),
+            'created_at' => date("Y-m-d H:i:s")
         ]);
     }
 }
