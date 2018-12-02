@@ -8,8 +8,8 @@ class PagesController extends Controller
     public function index()
     {
         // Returns view of index page
-        $popularBreeds = Breed::orderBy('visits', 'desc')->take(3)->get();
-        $recentBreeds = Breed::orderBy('created_at')->take(6)->get();
+        $popularBreeds = Breed::orderBy('visits', 'desc ')->take(3)->get();
+        $recentBreeds = Breed::orderBy('created_at', 'desc')->take(6)->get();
         return view('pages.index')
             ->with('popularBreeds', $popularBreeds)
             ->with('recentBreeds', $recentBreeds);

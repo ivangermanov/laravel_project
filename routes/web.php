@@ -14,7 +14,6 @@
 Route::get('/', 'PagesController@index')->name('index');
 Route::get('/about', 'PagesController@about')->name('about');
 
-Route::get('breeds/recents', 'BreedsController@getRecentBreeds')->name('getRecentBreeds');
 Route::resource('breeds', 'BreedsController');
 
 
