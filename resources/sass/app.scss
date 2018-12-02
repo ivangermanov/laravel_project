@@ -8,5 +8,11 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// scss for font awesome
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+
 // SCSS for posts in Breeds
 @import 'post';
+
+// SCSS for profile page
+@import 'profile';

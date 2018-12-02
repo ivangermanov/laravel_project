@@ -13,6 +13,7 @@
 
 Route::get('/', 'PagesController@index')->name('index');
 Route::get('/about', 'PagesController@about')->name('about');
+Route::get('/profile', 'PagesController@profile')->name('profile');
 
 Route::resource('breeds', 'BreedsController');
 
