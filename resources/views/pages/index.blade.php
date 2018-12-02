@@ -1,46 +1,46 @@
-
 @extends('layouts.app') 
 @section('title', 'Homepage') 
 @section('content')
   @include('pages.inc_index.header')
   @include('pages.inc_index.grid')
-  
 
-  <!-- Features Section -->
-  <div class="row mt-4">
-    <div class="col-lg-6">
-      <h2>Modern Business Features</h2>
-      <p>The Modern Business template by Start Bootstrap includes:</p>
-      <ul>
-        <li>
-          <strong>Bootstrap v4</strong>
-        </li>
-        <li>jQuery</li>
-        <li>Font Awesome</li>
-        <li>Working contact form with validation</li>
-        <li>Unstyled page elements for easy customization</li>
-      </ul>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam
-        totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
-    </div>
-    <div class="col-lg-6">
-      <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-    </div>
+
+<!-- Features Section -->
+<div class="row mt-4">
+  <div class="col-lg-6">
+    <h2>Become a Member!</h2>
+    <h3>The features you get by registering:</h3>
+    <ul>
+      <li>
+        <h5><strong>Your own unique Dog profile page</strong></h5>
+      </li>
+      <li>
+        <h5>Upload photos of your Dog</h5>
+      </li>
+      <li>
+        <h5>Comment on Dog breeds</h5>
+      </li>
+      <li>
+        <h5>Make Dog friends</h5>
+      </li>
+    </ul>
+    <h5>*Note: In order to become a member of our website you need to be in possession of a Dog.</h5>
+    <p>Please read these <a href="#">Terms and Conditions</a> ("Terms", "Terms and Conditions") carefully before using the www.barkpedia.com
+      website (the "Service") operated by BarkPedia ("us", "we", or "our").</p>
+    <p>By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then
+      you may not access the Service.</p>
+
   </div>
-  <!-- /.row -->
-
-  <hr>
-
-  <!-- Call to Action Section -->
-  <div class="row mb-4">
-    <div class="col-md-8">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam
-        harum neque nemo praesentium cum alias asperiores commodi.</p>
-    </div>
-    <div class="col-md-4">
-      <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
-    </div>
+  <div class="col-lg-6">
+    <img class="img-fluid rounded" src="/storage/images/miscellaneous/registerdog.jpg" alt="Register dog promoter">
   </div>
+</div>
+<!-- /.row -->
+
+<hr>
+
+<!-- Call to Action Section -->
+<a class="btn btn-lg btn-success btn-block mb-3" href="#">Register!</a>
 
 </div>
 <!-- /.container -->

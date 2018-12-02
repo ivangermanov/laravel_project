@@ -47,7 +47,9 @@ class BreedsController extends Controller
      */
     public function show($id)
     {
-        //
+        $breed = Breed::find($id);
+        $traits = explode(", ", $breed['traits']);
+        return view('breeds.show')->with('breed', $breed)->with('traits', $traits);
     }
 
     /**

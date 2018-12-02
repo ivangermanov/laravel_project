@@ -19,7 +19,7 @@ class CreateTableBreeds extends Migration
             $table->decimal('height', 3, 2);
             $table->unsignedTinyInteger('weight');
             $table->text('history');
-            $table->text('behaviour');
+            $table->text('traits');
             $table->string('img_link')->nullable();
             $table->string('author');
             $table->integer('visits')->default(0);
