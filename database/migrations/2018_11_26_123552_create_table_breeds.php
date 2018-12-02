@@ -22,6 +22,7 @@ class CreateTableBreeds extends Migration
             $table->text('behaviour');
             $table->string('img_link')->nullable();
             $table->string('author');
+            $table->integer('visits')->default(0);
             $table->timestamps();
         });
     }
