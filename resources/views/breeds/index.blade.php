@@ -21,7 +21,7 @@
                         {{mb_strimwidth($breeds[$i]->history, 0, 200, '...')}}
                     </div>
                     <div>
-                        <a class="btn btn-primary btn-md">Read more</a>
+                        <a href="/breeds/{{$breeds->id}}" class="btn btn-primary btn-md">Read more</a>
                     </div>
                 </div>
             </div>

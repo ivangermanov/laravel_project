@@ -15,17 +15,17 @@
             @if ($i === 0)
                 <div class="carousel-item active">
                     <img class="d-block w-100" src="{{$popularBreeds[$i]->img_link}}">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="card card-sm carousel-caption bg-dark">
                         <h3>{{$popularBreeds[$i]->breed}}</h3>
-                        <p>{{mb_strimwidth($popularBreeds[$i]->history, 0, 100, '...')}}</p>
+                        <p>{{mb_strimwidth($popularBreeds[$i]->history, 0, 150, '...')}}</p>
                     </div>
                 </div>
             @else
                 <div class="carousel-item">
                     <img class="d-block w-100" src="{{$popularBreeds[$i]->img_link}}">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="card card-sm carousel-caption bg-dark">
                         <h3>{{$popularBreeds[$i]->breed}}</h3>
-                        <p>{{mb_strimwidth($popularBreeds[$i]->history, 0, 100, '...')}}</p>
+                        <p>{{mb_strimwidth($popularBreeds[$i]->history, 0, 200, '...')}}</p>
                     </div>
                 </div>
             @endif
