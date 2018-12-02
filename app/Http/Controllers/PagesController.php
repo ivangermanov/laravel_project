@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\BreedsController;
 
 class PagesController extends Controller
 {

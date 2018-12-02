@@ -1,12 +1,11 @@
+
 @extends('layouts.app') 
 @section('title', 'Homepage') 
 @section('content')
   @include('pages.inc_index.header')
-
 <div class="container">
   <!-- Portfolio Section -->
-  <h2 class="mt-4">Portfolio Heading</h2>
-
+  <h2 class="mt-4">Breeds</h2>
   <div class="row">
     <div class="col-lg-4 col-sm-6 portfolio-item">
       <div class="card h-100">
