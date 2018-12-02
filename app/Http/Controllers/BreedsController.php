@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Breed;
 
 class BreedsController extends Controller
 {
@@ -13,7 +14,8 @@ class BreedsController extends Controller
      */
     public function index()
     {
-        //
+        $breeds = Breed::all();
+        return view('breeds.index')->with('breeds', $breeds);
     }
 
     /**
