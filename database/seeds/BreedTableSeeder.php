@@ -19,7 +19,7 @@ class BreedTableSeeder extends Seeder
             'traits' => 'Outgoing, Alert, Intelligent, Friendly, Gentle',
             'img_link' => Storage::url('public/images/breeds/husky.jpg'),
             'author' => 'Ivan Germanov',
-            'created_at' => date("Y-m-d H:i:s"),
+            'created_at' => '2017-06-30 19:22:35',
         ]);
         DB::table('breeds')->insert([
             'breed' => 'Pit bull',
@@ -30,7 +30,7 @@ class BreedTableSeeder extends Seeder
             'img_link' => Storage::url('public/images/breeds/pitbull.jpg'),
             'author' => 'Ivan Germanov',
             'visits' => 1,
-            'created_at' => date("Y-m-d H:i:s"),
+            'created_at' => '2017-06-22 19:22:35',
         ]);
         DB::table('breeds')->insert([
             'breed' => 'German Shepherd',
@@ -41,7 +41,7 @@ class BreedTableSeeder extends Seeder
             'img_link' => Storage::url('public/images/breeds/germanshepherd.jpg'),
             'author' => 'Ivan Germanov',
             'visits' => 3,
-            'created_at' => date("Y-m-d H:i:s"),
+            'created_at' => '2017-06-24 19:22:35',
         ]);
         DB::table('breeds')->insert([
             'breed' => 'Pomeranian',
@@ -51,7 +51,7 @@ class BreedTableSeeder extends Seeder
             'traits' => 'Perky, Energetic, Intelligent, Alert, Barky',
             'img_link' => Storage::url('public/images/breeds/pomeranian.jpg'),
             'author' => 'Ivan Germanov',
-            'created_at' => date("Y-m-d H:i:s"),
+            'created_at' => '2017-06-28 19:22:35',
         ]);
         DB::table('breeds')->insert([
             'breed' => 'Dalmatian',
@@ -62,7 +62,7 @@ class BreedTableSeeder extends Seeder
             'img_link' => Storage::url('public/images/breeds/dalmatian.jpg'),
             'author' => 'Ivan Germanov',
             'visits' => 5,
-            'created_at' => date("Y-m-d H:i:s"),
+            'created_at' => '2017-06-29 19:22:35',
         ]);
     }
 }
