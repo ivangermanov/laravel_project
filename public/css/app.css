@@ -1,4 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito);body {
+  padding-top: 50px;
+}
+
+/*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -10466,9 +10470,45 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.post {
+  background-color: #FFF;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 1px #CCC;
+          box-shadow: 0 0 1px #CCC;
+}
+
+.post .content {
+  padding: 15px;
+}
+
+.post .author {
+  font-size: 11px;
+  color: #737373;
+  padding: 25px 30px 20px;
+}
+
+.post .post-img-content {
+  height: 175px;
+  position: relative;
+}
+
+.post .post-img-content img {
+  position: absolute;
+}
+
+.post .post-title {
+  display: table-cell;
+  vertical-align: bottom;
+  z-index: 2;
+  position: relative;
+}
+
+.post .post-title b {
+  background-color: rgba(51, 51, 51, 0.58);
+  display: inline-block;
+  margin-bottom: 5px;
+  color: #FFF;
+  padding: 10px 15px;
+  margin-top: 5px;
 }
 

@@ -1,35 +1,35 @@
 <header>
+    @if (count($popularBreeds) > 0)
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            @for ($i = 0; $i < count($popularBreeds); $i++)
+            @if ($i === 0)
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            @else
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}"></li>
+            @endif
+            @endfor
         </ol>
         <div class="carousel-inner" role="listbox">
-            <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="http://placehold.it/1900x1080" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>First Slide</h3>
-                    <p>This is a description for the first slide.</p>
+            @for ($i = 0; $i < count($popularBreeds); $i++)
+            @if ($i === 0)
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="{{$popularBreeds[$i]->img_link}}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>{{$popularBreeds[$i]->breed}}</h3>
+                        <p>{{mb_strimwidth($popularBreeds[$i]->history, 0, 100, '...')}}</p>
+                    </div>
                 </div>
-            </div>
-            <!-- Slide Two - Set the background image for this slide in the line below -->
-            <div class="carousel-item">
-                <img class="d-block w-100" src="http://placehold.it/1900x1080" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Second Slide</h3>
-                    <p>This is a description for the second slide.</p>
+            @else
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{$popularBreeds[$i]->img_link}}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>{{$popularBreeds[$i]->breed}}</h3>
+                        <p>{{mb_strimwidth($popularBreeds[$i]->history, 0, 100, '...')}}</p>
+                    </div>
                 </div>
-            </div>
-            <!-- Slide Three - Set the background image for this slide in the line below -->
-            <div class="carousel-item">
-                <img class="d-block w-100" src="http://placehold.it/1900x1080" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Third Slide</h3>
-                    <p>This is a description for the third slide.</p>
-                </div>
-            </div>
+            @endif
+            @endfor
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -40,4 +40,7 @@
                   <span class="sr-only">Next</span>
                 </a>
     </div>
+    @else 
+    <h1>No popularBreeds found</h1>
+    @endif
 </header>
