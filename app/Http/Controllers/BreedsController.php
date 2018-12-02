@@ -83,16 +83,4 @@ class BreedsController extends Controller
     {
         //
     }
-    /**
-     * Retrieve recent breeds from database
-     * 
-     * @param int $counter
-     * @return $Breeds
-     */
-    public function getRecentBreeds()
-    {
-        $breeds = Breed::orderBy('created_at')->take(6)->get();
-        //return view('index')->with('recentBreeds', $breeds);
-        return $breeds;
-    } 
 }

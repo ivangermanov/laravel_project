@@ -1,11 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< HEAD
-use App\Http\Controllers\BreedsController;
-=======
 use App\Breed;
->>>>>>> e721dfffa9a00604b0cb2dcd92308207ddfc3fea
 
 class PagesController extends Controller
 {
@@ -13,7 +9,10 @@ class PagesController extends Controller
     {
         // Returns view of index page
         $popularBreeds = Breed::orderBy('visits')->take(3)->get();
-        return view('pages.index')->with('popularBreeds', $popularBreeds);
+        $recentBreeds = Breed::orderBy('created_at')->take(6)->get();
+        return view('pages.index')
+            ->with('popularBreeds', $popularBreeds)
+            ->with('recentBreeds', $recentBreeds);
     }
 
     public function about()
