@@ -11,11 +11,15 @@
         <li class="nav-item">
           <a class="nav-link" href="/breeds">Breeds</a>
         </li>
-        {{-- <li class="nav-item">
+        {{--
+        <li class="nav-item">
           <a class="nav-link" href="/forum">Forum</a>
         </li> --}}
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">Profile</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
