@@ -18,16 +18,13 @@
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/profile">Profile</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Blog
+              *name*
             </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-            <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-            <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
+            <a class="dropdown-item" href="profile">Profile page</a>
+            <a class="dropdown-item" href="profile/pictures">Profile pictures</a>
             <a class="dropdown-item" href="blog-post.html">Blog Post</a>
           </div>
         </li>

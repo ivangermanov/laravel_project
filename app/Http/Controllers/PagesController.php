@@ -24,7 +24,7 @@ class PagesController extends Controller
     public function profile()
     {
         //returns view of the profile page if the user is logged in, and login screen if not
-        return view('pages.profile');
+        return view('profile.index');
     }
     // Example controller handling route with parameter
     // public function greeting($name)
