@@ -41,7 +41,7 @@
 
 <!-- Call to Action Section -->
 @if (!Auth::user())
-  <a class="btn btn-lg btn-success btn-block mb-3" href="#">Register!</a>    
+  <a class="btn btn-lg btn-success btn-block mb-3" href="{{ route('register') }}">Register!</a>    
 @endif
 </div>
 <!-- /.container -->
