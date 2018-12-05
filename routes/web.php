@@ -13,7 +13,9 @@
 
 Route::get('/', 'PagesController@index')->name('index');
 Route::get('/about', 'PagesController@about')->name('about');
-Route::get('/profile', 'PagesController@profile')->name('profile');
+Route::get('/profile', 'ProfilesController@index')->name('profile');
+Route::get('/profile/galery', 'ProfilesController@show')->name('galery');
+Route::get('/profile/edit', 'ProfilesController@edit')->name('edit');
 
 Route::resource('breeds', 'BreedsController');
 
