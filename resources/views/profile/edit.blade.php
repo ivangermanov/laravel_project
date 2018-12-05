@@ -9,9 +9,9 @@
       <div class="col-md-3">
         <div class="text-center">
           <img src="{{Storage::url('public/images/miscellaneous/profiledog.jpg')}} "width="230px" class="avatar img-square" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          
-          <input type="file" class="form-control">
+          <div class="btn btn-primary mt-3">
+                Upload a different photo<input type="file" class="form-control" hidden>
+          </div>
         </div>
       </div>
       
