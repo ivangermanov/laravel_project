@@ -20,3 +20,7 @@ Route::resource('breeds', 'BreedsController');
 
 // Example route with parameter
 // Route::get('/greeting/{name}', 'PagesController@greeting')->name('greeting');
+
+Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

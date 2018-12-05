@@ -14,7 +14,7 @@ class BreedsController extends Controller
      */
     public function index()
     {
-        $breeds = Breed::all();
+        $breeds = Breed::orderBy('breed')->paginate(9);
         return view('breeds.index')->with('breeds', $breeds);
     }
 

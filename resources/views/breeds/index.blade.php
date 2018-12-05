@@ -1,7 +1,7 @@
 @extends('layouts.app') 
 @section('title', 'Breeds') 
-@section('content')
-
+@section('content') {{-- TODO: Add sorting for breeds (alphabetic, most
+recent, most popular) --}}
 <h1 class="mt-3 text-center">Breeds</h1>
 @if (count($breeds) > 0) @for ($i = 0; $i
 < count($breeds); $i++) @if ($i % 3===0 ) <div class="row mb-5 mt-3">
@@ -26,9 +26,10 @@
                 </div>
             </div>
         </div>
-        @if ($i % 3===2 ) </div>
+        @if ($i % 3===2 || $i===count($breeds) - 1) </div>
                 @endif
 @endfor
+    {{$breeds->links()}}
     </div>
 @else
 <h1>No breeds found</h1>
