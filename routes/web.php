@@ -13,12 +13,8 @@
 
 Route::get('/', 'PagesController@index')->name('index');
 Route::get('/about', 'PagesController@about')->name('about');
-Route::get('/profile', 'ProfilesController@index')->name('profile');
-Route::get('/profile/galery', 'ProfilesController@show')->name('galery');
-Route::get('/profile/edit', 'ProfilesController@edit')->name('edit');
 
 Route::resource('breeds', 'BreedsController');
-
 
 // Example route with parameter
 // Route::get('/greeting/{name}', 'PagesController@greeting')->name('greeting');
@@ -26,3 +22,10 @@ Route::resource('breeds', 'BreedsController');
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+// Handling for routes which need authentication
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/profile', 'ProfilesController@index')->name('profile');
+    Route::get('/profile/gallery', 'ProfilesController@show_gallery')->name('gallery');
+    Route::get('/profile/edit', 'ProfilesController@edit')->name('edit');
+});

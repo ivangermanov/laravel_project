@@ -11,7 +11,7 @@
               <img class="editable img-responsive" alt=" Avatar" id="avatar2" src='{{Storage::url('public/images/miscellaneous/profiledog.jpg')}}' width="230px">
             </span>
             <div class="space space-4"></div>
-            <div>
+            <div class="pt-2">
               <a href="{{url('profile/edit')}}" class="btn btn-sm btn-block btn-success">
                 <i class="ace-icon fa fa-cog bigger-120"></i>
                 <span class="bigger-110">Edit profile</span>
@@ -27,7 +27,7 @@
 
           <div class="col-xs-12 col-sm-9">
             <h4 class="blue">
-              <span class="middle">*Name*</span>
+              <span class="middle">{{Auth::user()->name}}</span>
             </h4>
 
             <div class="profile-user-info">
@@ -35,57 +35,56 @@
                 <div class="profile-info-name"> E-mail </div>
 
                 <div class="profile-info-value">
-                  <span>*email*</span>
+                  <span>{{Auth::user()->email}}</span>
                 </div>
               </div>
+              @if (isset(Auth::user()->location))
+                <div class="profile-info-row">
+                  <div class="profile-info-name"> Country </div>
 
-              <div class="profile-info-row">
-                <div class="profile-info-name"> Location </div>
-
-                <div class="profile-info-value">
-                  <i class="fa fa-map-marker light-orange bigger-110"></i>
-                  <span>*country*</span>
-                  <span>*city*</span>
+                  <div class="profile-info-value">
+                    <i class="fa fa-map-marker light-orange bigger-110"></i>
+                    <span>{{Auth::user()->country}}</span>
+                  </div>
                 </div>
-              </div>
+              @endif
 
+              @if (isset(Auth::user()->breed))
               <div class="profile-info-row">
                 <div class="profile-info-name"> Breed </div>
 
                 <div class="profile-info-value">
-                  <span>*breed*</span>
+                  <span>{{Auth::user()->breed}}</span>
                 </div>
               </div>
+              @endif
 
+
+              @if (isset(Auth::user()->dob))
               <div class="profile-info-row">
-                <div class="profile-info-name"> Age </div>
+                <div class="profile-info-name"> Date of birth </div>
 
                 <div class="profile-info-value">
-                  <span>*age*</span>
+                  <span>{{Auth::user()->dob}}</span>
                 </div>
               </div>
+              @endif
 
-              <div class="profile-info-row">
-                <div class="profile-info-name"> Joined </div>
+              @if (isset(Auth::user()->created_at))
+                <div class="profile-info-row">
+                  <div class="profile-info-name"> Joined </div>
 
-                <div class="profile-info-value">
-                  <span>*date*</span>
+                  <div class="profile-info-value">
+                  <span>{{Auth::user()->created_at}}</span>
+                  </div>
                 </div>
-              </div>
+              @endif
 
               <div class="profile-info-row">
                 <div class="profile-info-name"> Last Online </div>
 
                 <div class="profile-info-value">
                   <span>*date*</span>
-                </div>
-              </div>
-
-              <div class="profile-info-row">
-                <div class="profile-info-name"> Website </div>
-
-                <div class="profile-info-value">
-                  <a href="#" target="_blank">*website*</a>
                 </div>
               </div>
 
@@ -122,7 +121,7 @@
             <div class="widget-box transparent">
               <div class="widget-header widget-header-small">
                 <h4 class="widget-title smaller">
-                  <i class="ace-icon fa fa-check-square-o bigger-110"></i> Little About Me
+                  <i class="ace-icon fa fa-check-square-o bigger-110 pt-4"></i> Little About Me
                 </h4>
               </div>
 

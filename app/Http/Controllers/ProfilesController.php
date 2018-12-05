@@ -38,14 +38,25 @@ class ProfilesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified profile by id.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        return view('profile.galery');
+        return view('profile.show');//->with('breed', $breed)->with('traits', $traits);
+    }
+
+    /**
+     * Display the profile's gallery.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_gallery()
+    {
+        return view('profile.gallery');
     }
 
     /**
