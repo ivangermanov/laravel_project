@@ -11,16 +11,17 @@
               <img class="editable img-responsive" alt=" Avatar" id="avatar2" src='{{Storage::url('public/images/miscellaneous/profiledog.jpg')}}' width="230px">
             </span>
             <div class="space space-4"></div>
+            <div>
+              <a href="{{url('profile/edit')}}" class="btn btn-sm btn-block btn-success">
+                <i class="ace-icon fa fa-cog bigger-120"></i>
+                <span class="bigger-110">Edit profile</span>
+              </a>
 
-            <a href="#" class="btn btn-sm btn-block btn-success">
-              <i class="ace-icon fa fa-cog bigger-120"></i>
-              <span class="bigger-110">Edit profile</span>
-            </a>
-
-            <a href="#" class="btn btn-sm btn-block btn-primary">
-              <i class="ace-icon fa fa-trash bigger-110"></i>
-              <span class="bigger-110">Delete profile</span>
-            </a>
+              <a href="#" class="btn btn-sm btn-block btn-primary">
+                <i class="ace-icon fa fa-trash bigger-110"></i>
+                <span class="bigger-110">Delete profile</span>
+              </a>
+            </div>
           </div>
           <!-- /.col -->
 

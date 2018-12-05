@@ -43,9 +43,9 @@ class ProfilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('profile.galery');
     }
 
     /**
@@ -54,9 +54,9 @@ class ProfilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('profile.edit');
     }
 
     /**
@@ -80,15 +80,5 @@ class ProfilesController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Show the pisctures from the profile.
-     *
-     * 
-     */
-    public function showPictures()
-    {
-        return view('profile.pictures');
     }
 }

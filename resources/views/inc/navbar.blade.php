@@ -23,9 +23,9 @@
               *name*
             </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-            <a class="dropdown-item" href="profile">Profile page</a>
-            <a class="dropdown-item" href="profile/pictures">Profile pictures</a>
-            <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+            <a class="dropdown-item" href="../profile">Profile page</a>
+            <a class="dropdown-item" href="{{url('/profile/galery')}}">Profile galery</a>
+            <a class="dropdown-item" href="blog-post.html">Log out</a>
           </div>
         </li>
       </ul>
