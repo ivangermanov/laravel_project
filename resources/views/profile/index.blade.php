@@ -27,7 +27,7 @@
 
           <div class="col-xs-12 col-sm-9">
             <h4 class="blue">
-              <span class="middle">{{Auth::user()->name}}</span>
+              <span class="middle">{{Auth::user()->name}} </span><i class="fa fa-circle green"></i>
             </h4>
 
             <div class="profile-user-info">
@@ -80,13 +80,15 @@
                 </div>
               @endif
 
-              <div class="profile-info-row">
-                <div class="profile-info-name"> Last Online </div>
+              @if (Auth::user()->online === 0)
+                <div class="profile-info-row">
+                  <div class="profile-info-name"> Last Online </div>
 
-                <div class="profile-info-value">
-                  <span>*date*</span>
-                </div>
-              </div>
+                  <div class="profile-info-value">
+                    <span>{{Auth::user()->last_online}}</span>
+                  </div>
+                </div>   
+              @endif
 
               <div class="profile-info-row">
                 <div class="profile-info-name">

@@ -18,9 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->boolean('online')->default(false);
             $table->string('country')->nullable();
             $table->string('breed')->nullable();
             $table->date('dob')->nullable();
+            $table->timestamp('last_online')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->rememberToken();
             $table->timestamps();
         });

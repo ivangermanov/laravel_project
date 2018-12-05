@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -25,8 +28,11 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
-
+    protected function redirectTo()
+    {
+        DB::update('update users set online = 1 where id = ?', [Auth::id()]);
+        return '/';
+    }
     /**
      * Create a new controller instance.
      *
@@ -36,4 +42,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function logout(Request $request) {
+        DB::update('update users set online = 0 where id = ?', [Auth::id()]);
+        Auth::logout();
+        return redirect('/login');
+      }
 }

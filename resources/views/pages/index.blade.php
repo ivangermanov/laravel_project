@@ -40,8 +40,9 @@
 <hr>
 
 <!-- Call to Action Section -->
-<a class="btn btn-lg btn-success btn-block mb-3" href="#">Register!</a>
-
+@if (!Auth::user())
+  <a class="btn btn-lg btn-success btn-block mb-3" href="#">Register!</a>    
+@endif
 </div>
 <!-- /.container -->
 @endsection
