@@ -11,6 +11,9 @@
 
     <!-- CSS -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script src="{{asset('js/app.js')}}"></script>
 </head>
 
 <body>
@@ -20,8 +23,6 @@
     </div>
     {{-- @include('inc.footer') --}}
 
-    <!-- JavaScript -->
-    <script src="{{asset('js/app.js')}}"></script>
 </body>
 
 </html>
