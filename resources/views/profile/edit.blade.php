@@ -4,11 +4,14 @@
 <div class="container">
   <h1>Edit Profile</h1>
   <hr>
+  {!! Form::open(['action' => 'ProfilesController@update', 'method'=> 'POST']) !!}
   <div class="row">
     <!-- left column -->
     <div class="col-md-3">
       <div class="text-center">
-        <img src="{{Storage::url('public/images/miscellaneous/profiledog.jpg')}} " width="230px" class="avatar img-square" alt="avatar">
+          <span class="profile-picture">
+            <img class="editable img-responsive profile-picture" alt=" Avatar" id="avatar2" src='{{Storage::url('public/images/miscellaneous/profiledog.jpg')}}' >
+          </span>
         <div class="btn btn-primary mt-3">
           Upload a different photo<input type="file" class="form-control" hidden>
         </div>
@@ -27,25 +30,24 @@
         <div class="form-group">
           <label class="col-lg-3 control-label">Name:</label>
           <div class="col-lg-8">
-            <input class="form-control" type="text" value="*name*">
+          {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => Auth::user()->name])}}
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Email:</label>
           <div class="col-lg-8">
-            <input class="form-control" type="text" value="*e-mail*">
+              {{Form::text('email', '', ['class' => 'form-control', 'placeholder' => Auth::user()->email])}}
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Country:</label>
           <div class="col-lg-8">
-            <input class="form-control" type="text" value="*country*">
-          </div>
+              {{Form::text('country', '', ['class' => 'form-control', 'placeholder' => Auth::user()->country])}}          </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Breed:</label>
           <div class="col-md-8">
-            <input class="form-control" type="text" value="*breed*">
+              {{Form::text('breed', '', ['class' => 'form-control', 'placeholder' => Auth::user()->breed])}}
           </div>
         </div>
         <div class="form-group">
@@ -55,51 +57,34 @@
           />
           <label class="col-md-3 control-label">Birthday:</label>
           <div class="col-md-8">
-            <input class="form-control datepicker" readonly="readonly" style="background:white;">
+            {{Form::text('date','',['class' => 'form-control datepicker', 'readonly'=>'readonly', 'style' => 'background:white;', 'value' => Auth::user()->dob])}}
             <script>
               jQuery(document).ready(function($) {
                       $('.datepicker').datepicker({
                         changeMonth: true,
-                        changeYear: true
+                        changeYear: true,
+                        yearRange: '1950:2019'
                       });
                   });
             </script>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-md-3 control-label">Website:</label>
-          <div class="col-md-8">
-            <input class="form-control" type="text" value="*website*">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Facebook link:</label>
-          <div class="col-md-8">
-            <input class="form-control" type="text" value="*link*">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Instagram link:</label>
-          <div class="col-md-8">
-            <input class="form-control" type="text" value="*link*">
-          </div>
-        </div>
-        <div class="form-group">
           <label class="col-md-3 control-label">Password:</label>
           <div class="col-md-8">
-            <input class="form-control" type="password">
+            {{Form::password('password', ['class' => 'form-control'])}}
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Confirm password:</label>
           <div class="col-md-8">
-            <input class="form-control" type="password">
+            {{Form::password('conf-pass', ['class' => 'form-control'])}}
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label"></label>
           <div class="col-md-8">
-            <input type="button" class="btn btn-primary" value="Save Changes">
+            {{Form::submit('Submit changes', ['class' => 'btn btn-primary'])}}
             <span></span>
             <a href="{{url('/profile')}}"><button type="button" class="btn btn-default" >Cancel</button></a>
           </div>
@@ -107,6 +92,7 @@
       </form>
     </div>
   </div>
+  {!! Form::close() !!}
 </div>
 <hr>
 @endsection

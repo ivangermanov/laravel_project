@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfilesController extends Controller
 {
@@ -34,7 +36,7 @@ class ProfilesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -77,9 +79,33 @@ class ProfilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request,[
+            'password' => 'nullable|min:4',
+            'conf-pass' => 'nullable|same:password'
+        ]);
+
+        $user = Auth::user();
+        if ($request->filled('name')) {
+            $user-> name = $request->input('name');    
+        }
+        if ($request->filled('email')) {
+            $user-> email = $request->input('email');
+        }
+        if ($request->filled('country')) {
+            $user-> country = $request->input('country');
+        }
+        if ($request->filled('breed')) {
+            $user-> breed = $request->input('breed');
+        }
+        if ($request->filled('password')) {
+            $user-> password = Hash::make($request->input('password'));
+        }
+        $user -> dob = date("Y-m-d", strtotime($request->date));  
+        $user->save();
+
+        return view('profile.index');
     }
 
     /**

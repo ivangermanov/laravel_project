@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="profile-info-value">
-                  <a href="#">Facebook</a>
+                <a href="https://www.facebook.com/{{str_replace(' ', '', Auth::user()->name)}}">Facebook</a>
                 </div>
               </div>
 
@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="profile-info-value">
-                  <a href="#" class="red">Instagram</a>
+                  <a href="https://www.instagram.com/{{str_replace(' ', '', Auth::user()->name)}}" class="red">Instagram</a>
                 </div>
               </div>
             </div>
