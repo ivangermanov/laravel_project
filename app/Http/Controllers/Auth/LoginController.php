@@ -45,6 +45,7 @@ class LoginController extends Controller
 
     public function logout(Request $request) {
         DB::update('update users set online = 0 where id = ?', [Auth::id()]);
+        DB::update('update users set last_online = CURRENT_TIMESTAMP where id = ?', [Auth::id()]);
         Auth::logout();
         return redirect('/login');
       }
