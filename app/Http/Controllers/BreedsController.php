@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Breed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class BreedsController extends Controller
 {
@@ -37,16 +39,42 @@ class BreedsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required'
+            'breed' => 'required',
+            'image' => 'required|image',
+            'history' => 'required',
+            'height' => 'required',
+            'weight' => 'required',
         ]);
 
         // Create Breed
         $breed = new Breed;
-        $breed -> title = $request->input('title');
-        $breed -> body = $request->input('body');
-        $breed -> save();
-        return redirect('/posts')->with('success', 'Breed Created');
+        $breed->breed = $request->input('breed');
+        $breed->height = $request->input('height');
+        $breed->weight = $request->input('weight');
+        $breed->history = $request->input('history');
+
+        // Formatting the traits for the DB
+        $traits = [];
+        for ($i = 0; $i < 6; $i++) {
+            if ($request->filled('trait' . ($i + 1))) {
+                array_push($traits, $request->input('trait' . ($i + 1)));
+            }
+        }
+        $traits_str = implode(", ", $traits);
+        $breed->traits = strip_tags($traits_str);
+
+        // Handling the image
+        if ($request->hasFile('image')) {
+            if ($request->file('image')->isValid()) {
+                $file = $request->image->store('public/images/breeds');
+                $path = basename($file);
+                $breed->img_link = Storage::url('public/images/breeds/' . $path);
+            }
+        }
+
+        $breed->author = Auth::user()->name;
+        $breed->save();
+        return redirect('/breeds')->with('success', 'Breed Created');
     }
 
     /**
