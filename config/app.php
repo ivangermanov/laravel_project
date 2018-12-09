@@ -160,13 +160,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-<<<<<<< HEAD
-
-=======
         Unisharp\Ckeditor\ServiceProvider::class,
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
->>>>>>> 60da33d84f72b7a17ce13412e166e300a936b67b
         /*
          * Package Service Providers...
          */

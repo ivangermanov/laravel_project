@@ -28,10 +28,6 @@ recent, most popular) --}}
                 <div>
                     {{mb_strimwidth($breeds[$i]->history, 0, 200, '...')}}
                 </div>
-<<<<<<< HEAD
-                <div>
-                    <a href="/breeds/{{$breeds[$i]->id}}" class="btn btn-primary btn-md">Read more</a>
-=======
                 <div class="content">
                     <div class="author">
                         By <b>{{$breeds[$i]->author}}</b> |
@@ -43,7 +39,6 @@ recent, most popular) --}}
                     <div>
                         <a href="/breeds/{{$breeds[$i]->id}}" class="btn btn-primary btn-md">Read more</a>
                     </div>
->>>>>>> 60da33d84f72b7a17ce13412e166e300a936b67b
                 </div>
             </div>
         </div>
