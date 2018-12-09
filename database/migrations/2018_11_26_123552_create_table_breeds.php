@@ -16,14 +16,15 @@ class CreateTableBreeds extends Migration
         Schema::create('breeds', function (Blueprint $table) {
             $table->increments('id');
             $table->string('breed');
-            $table->decimal('height', 3, 2);
+            $table->unsignedDecimal('height', 3, 2);
             $table->unsignedTinyInteger('weight');
             $table->text('history');
             $table->text('traits');
             $table->string('img_link')->nullable();
             $table->string('author');
             $table->integer('visits')->default(0);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

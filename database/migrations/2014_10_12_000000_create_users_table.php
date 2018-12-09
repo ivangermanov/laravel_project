@@ -22,9 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('country',2)->nullable();
             $table->string('breed')->nullable();
             $table->date('dob')->nullable();
-            $table->timestamp('last_online')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('last_online')->nullable();
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 
