@@ -25,7 +25,7 @@ class BreedsController extends Controller
      */
     public function create()
     {
-        //
+        return view('breeds.create');
     }
 
     /**
@@ -36,7 +36,17 @@ class BreedsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        // Create Breed
+        $breed = new Breed;
+        $breed -> title = $request->input('title');
+        $breed -> body = $request->input('body');
+        $breed -> save();
+        return redirect('/posts')->with('success', 'Breed Created');
     }
 
     /**
