@@ -16,11 +16,17 @@
                 <i class="ace-icon fa fa-cog bigger-120"></i>
                 <span class="bigger-110">Edit profile</span>
               </a>
-
-              <a href="#" class="btn btn-sm btn-block btn-primary">
-                <i class="ace-icon fa fa-trash bigger-110"></i>
-                <span class="bigger-110">Delete profile</span>
-              </a>
+              <div class = "pt-1">
+                {!! Form::open(['action' => 'ProfilesController@destroy', 'method' => 'POST']) !!}
+                  {{Form::hidden('_method', 'DELETE')}}
+                  {{Form::button('<i class="ace-icon fa fa-trash bigger-110"> </i> Delete ', ['class'=>'btn btn-sm btn-block btn-danger', 'type'=> 'submit'])}}
+                {!! Form::close() !!}
+                <script>
+                  $(".delete").on("submit", function(){
+                      return confirm("Are you sure?");
+                  });
+              </script>
+              </div>
             </div>
           </div>
           <!-- /.col -->
@@ -38,7 +44,7 @@
                   <span>{{Auth::user()->email}}</span>
                 </div>
               </div>
-              @if (isset(Auth::user()->location))
+              @if (isset(Auth::user()->country))
                 <div class="profile-info-row">
                   <div class="profile-info-name"> Country </div>
 
