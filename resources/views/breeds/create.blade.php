@@ -2,12 +2,17 @@
 @section('title', 'Create Breed') 
 @section('content')
 <h1 class="mt-3 text-center">Create Breed</h1>
-{!! Form::open(['action' => 'BreedsController@store', 'method' => 'POST']) !!}
+{!! Form::open(['action' => 'BreedsController@store', 'method' => 'POST', 'files' => true]) !!}
 <div class="form-group">
-    {{Form::label('title', 'Breed Name')}} {{Form::text('title', '', ['class' => 'form-control'])}}
+    {{Form::label('breed', 'Breed Name')}} {{Form::text('breed', '', ['class' => 'form-control'])}}
 </div>
 <div class="form-group">
-    {{Form::label('body', 'History')}} {{Form::textarea('body', '', ['id' => 'article-ckeditor', 'class' => 'form-control'])}}
+        {{Form::label('image', 'Image')}}
+        {{Form::file('image', ['accept' => 'image/*', 'class' => 'btn btn-success btn-block'])}}
+</div>
+
+<div class="form-group">
+    {{Form::label('body', 'History')}} {{Form::textarea('history', '', ['id' => 'article-ckeditor', 'class' => 'form-control'])}}
 </div>
 <div class="form-group">
     {{Form::label('stats', 'Body Stats')}}
@@ -24,13 +29,13 @@
     <div class="row pt-4">
         @for ($i = 0; $i
         <=5 ; $i++) <div class="col col-2">
-            Trait {{$i + 1}} {{Form::text('trait', '', ['class' => 'form-control trait', 'onkeypress' => 'return (event.charCode > 64 && 
+            Trait {{$i + 1}} {{Form::text('trait'.($i+1), '', ['class' => 'form-control trait', 'onkeypress' => 'return (event.charCode > 64 && 
             event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)'])}}
     </div>
     @endfor
 </div>
 </div>
-{!! Form::submit('Submit', ['class' => 'btn btn-primary btn-block']) !!} {!! Form::close() !!}
+{!! Form::submit('Submit', ['class' => 'btn btn-primary btn-block mb-3']) !!} {!! Form::close() !!}
 <script>
     $( "#height" ).blur(function() {
     this.value = parseFloat(this.value).toFixed(2);
