@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-3 center">
             <span class="profile-picture">
-              <img class="editable img-responsive" alt=" Avatar" id="avatar2" src='{{Storage::url('public/images/miscellaneous/profiledog.jpg')}}' width="230px">
+              <img class="editable img-responsive profile-picture" alt=" Avatar" id="avatar2" src='{{Storage::url('public/images/miscellaneous/profiledog.jpg')}}' >
             </span>
             <div class="space space-4"></div>
             <div class="pt-2">

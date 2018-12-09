@@ -13567,6 +13567,12 @@ a.text-dark:focus {
   margin-top: 5px;
 }
 
+.breed-img-overlay {
+  position: absolute !important;
+  top: -5px !important;
+  left: 15px !important;
+}
+
 body {
   margin-top: 20px;
 }

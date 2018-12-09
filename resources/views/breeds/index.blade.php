@@ -8,26 +8,27 @@ recent, most popular) --}}
     @endif
     <div class="col-sm-4 col-md-4">
         <div class="post">
-            <div class="post-img-content">
+            <div class="post">
                 <img src="{{$breeds[$i]->img_link}}" class="img-fluid" />
-                <span class="post-title"><b>{{$breeds[$i]->breed}}</b>
+                <span class="post-title breed-img-overlay"><b>{{$breeds[$i]->breed}}</b>
+                </span>
+            </div>
+            <div class="content">
+                <div class="author">
+                    By <b>{{$breeds[$i]->author}}</b> |
+                    <time>{{$breeds[$i]->created_at}}</time>
                 </div>
-                <div class="content">
-                    <div class="author">
-                        By <b>{{$breeds[$i]->author}}</b> |
-                        <time>{{$breeds[$i]->created_at}}</time>
-                    </div>
-                    <div>
-                        {{mb_strimwidth($breeds[$i]->history, 0, 200, '...')}}
-                    </div>
-                    <div>
-                        <a href="/breeds/{{$breeds[$i]->id}}" class="btn btn-primary btn-md">Read more</a>
-                    </div>
+                <div>
+                    {{mb_strimwidth($breeds[$i]->history, 0, 200, '...')}}
+                </div>
+                <div>
+                    <a href="/breeds/{{$breeds[$i]->id}}" class="btn btn-primary btn-md">Read more</a>
                 </div>
             </div>
         </div>
-        @if ($i % 3===2 || $i===count($breeds) - 1) </div>
-                @endif
+    </div>
+    @if ($i % 3===2 || $i===count($breeds) - 1) </div>
+            @endif
 @endfor
     {{$breeds->links()}}
     </div>
