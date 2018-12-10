@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Breed;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -101,9 +103,13 @@ class BreedsController extends Controller
     public function edit($id)
     {
         $breed = Breed::find($id);
-        $traits = explode(", ", $breed->traits);
+        if ($breed->author === Auth::id()) {
+            $traits = explode(", ", $breed->traits);
+            return view('breeds.edit')->with('breed', $breed)->with('traits', $traits);
+        } else {
+            return redirect('/breeds')->with('error', 'You are not the author of this breed!');
+        }
 
-        return view('breeds.edit')->with('breed', $breed)->with('traits', $traits);
     }
 
     /**
@@ -115,43 +121,47 @@ class BreedsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'breed' => 'required',
-            'image' => 'nullable|image',
-            'history' => 'required',
-            'height' => 'required',
-            'weight' => 'required',
-        ]);
-
-        // Create Breed
-        $breed = Breed::find($id);
-        $breed->breed = $request->input('breed');
-        $breed->height = $request->input('height');
-        $breed->weight = $request->input('weight');
-        $breed->history = $request->input('history');
-
-        // Formatting the traits for the DB
-        $traits = [];
-        for ($i = 0; $i < 6; $i++) {
-            if ($request->filled('trait' . ($i + 1))) {
-                array_push($traits, $request->input('trait' . ($i + 1)));
+        if ($breed->author === Auth::id()) {
+            $this->validate($request, [
+                'breed' => 'required',
+                'image' => 'nullable|image',
+                'history' => 'required',
+                'height' => 'required',
+                'weight' => 'required',
+            ]);
+    
+            // Update Breed
+            $breed = Breed::find($id);
+            $breed->breed = $request->input('breed');
+            $breed->height = $request->input('height');
+            $breed->weight = $request->input('weight');
+            $breed->history = $request->input('history');
+    
+            // Formatting the traits for the DB
+            $traits = [];
+            for ($i = 0; $i < 6; $i++) {
+                if ($request->filled('trait' . ($i + 1))) {
+                    array_push($traits, $request->input('trait' . ($i + 1)));
+                }
             }
-        }
-        $traits_str = implode(", ", $traits);
-        $breed->traits = strip_tags($traits_str);
-
-        // Handling the image
-        if ($request->hasFile('image')) {
-            if ($request->file('image')->isValid()) {
-                $file = $request->image->store('public/images/breeds');
-                $path = basename($file);
-                $breed->img_link = Storage::url('public/images/breeds/' . $path);
+            $traits_str = implode(", ", $traits);
+            $breed->traits = strip_tags($traits_str);
+    
+            // Handling the image
+            if ($request->hasFile('image')) {
+                if ($request->file('image')->isValid()) {
+                    $file = $request->image->store('public/images/breeds');
+                    $path = basename($file);
+                    $breed->img_link = Storage::url('public/images/breeds/' . $path);
+                }
             }
+    
+            $breed->author = Auth::user()->id;
+            $breed->save();
+            return redirect('/breeds')->with('success', 'Breed Updated');
+        } else {
+            return redirect('/breeds')->with('error', 'You are not the author of this breed!');
         }
-
-        $breed->author = Auth::user()->name;
-        $breed->save();
-        return redirect('/breeds')->with('success', 'Breed Updated');
     }
 
     /**
@@ -163,7 +173,11 @@ class BreedsController extends Controller
     public function destroy($id)
     {
         $breed = Breed::find($id);
-        $breed->delete();
-        return redirect('/breeds')->with('success', 'Breed Removed');
+        if ($breed->author === Auth::id()) {
+            $breed->delete();
+            return redirect('/breeds')->with('success', 'Breed Removed');
+        } else {
+            return redirect('/breeds')->with('error', 'You are not the author of this breed!');
+        }
     }
 }

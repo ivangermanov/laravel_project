@@ -29,7 +29,7 @@ recent, most popular) --}}
             </div>
             <div class="content">
                 <div class="author">
-                    By <b>{{$breeds[$i]->author}}</b> |
+                    By <b>{{DB::table('users')->select('name')->where('id', '=', $breeds[$i]->author)->get()[0]->name}}</b> |
                     <time>{{$breeds[$i]->created_at}}</time>
                 </div>
                 <div>

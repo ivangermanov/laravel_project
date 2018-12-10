@@ -12,7 +12,7 @@
         <!-- Author -->
         <p class="lead">
             by
-            <a href="#">{{$breed->author}}</a>
+            <a href="#">{{DB::table('users')->select('name')->where('id', '=', $breed->author)->get()[0]->name}}</a>
         </p>
 
         <hr>
@@ -153,13 +153,17 @@
                 </div>
             </div>
         </div>
-        <div>
-            <a href="/breeds/{{$breed->id}}/edit" class="btn btn-primary btn-block mb-2 mt-3"><i class="fa fa-cog"></i><span class="ml-1">Edit</span></a>
-            {!!Form::open(['action' => ['BreedsController@destroy', $breed->id, 'method'=>'POST']])!!}
-                {{Form::hidden('_method', 'DELETE')}}
-                {{Form::button('<i class="fa fa-trash"></i> Delete', ['class' => 'btn btn-danger btn-block', 'type'=>'submit'])}}
-            {!!Form::close()!!}
-        </div>
+        @if (Auth::check())
+            @if (Auth::id() === $breed->author)
+            <div>
+                <a href="/breeds/{{$breed->id}}/edit" class="btn btn-primary btn-block mb-2 mt-3"><i class="fa fa-cog"></i><span class="ml-1">Edit</span></a>
+                {!!Form::open(['action' => ['BreedsController@destroy', $breed->id, 'method'=>'POST']])!!}
+                    {{Form::hidden('_method', 'DELETE')}}
+                    {{Form::button('<i class="fa fa-trash"></i> Delete', ['class' => 'btn btn-danger btn-block', 'type'=>'submit'])}}
+                {!!Form::close()!!}
+            </div>
+            @endif
+        @endif
     </div>
 </div>
 
