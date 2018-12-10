@@ -87,6 +87,8 @@ class BreedsController extends Controller
     {
         $breed = Breed::find($id);
         $traits = explode(", ", $breed['traits']);
+        $breed->visits = $breed->visits + 1;
+        $breed->save();
         return view('breeds.show')->with('breed', $breed)->with('traits', $traits);
     }
 
@@ -98,7 +100,10 @@ class BreedsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $breed = Breed::find($id);
+        $traits = explode(", ", $breed->traits);
+
+        return view('breeds.edit')->with('breed', $breed)->with('traits', $traits);
     }
 
     /**
@@ -110,7 +115,43 @@ class BreedsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'breed' => 'required',
+            'image' => 'nullable|image',
+            'history' => 'required',
+            'height' => 'required',
+            'weight' => 'required',
+        ]);
+
+        // Create Breed
+        $breed = Breed::find($id);
+        $breed->breed = $request->input('breed');
+        $breed->height = $request->input('height');
+        $breed->weight = $request->input('weight');
+        $breed->history = $request->input('history');
+
+        // Formatting the traits for the DB
+        $traits = [];
+        for ($i = 0; $i < 6; $i++) {
+            if ($request->filled('trait' . ($i + 1))) {
+                array_push($traits, $request->input('trait' . ($i + 1)));
+            }
+        }
+        $traits_str = implode(", ", $traits);
+        $breed->traits = strip_tags($traits_str);
+
+        // Handling the image
+        if ($request->hasFile('image')) {
+            if ($request->file('image')->isValid()) {
+                $file = $request->image->store('public/images/breeds');
+                $path = basename($file);
+                $breed->img_link = Storage::url('public/images/breeds/' . $path);
+            }
+        }
+
+        $breed->author = Auth::user()->name;
+        $breed->save();
+        return redirect('/breeds')->with('success', 'Breed Updated');
     }
 
     /**
@@ -121,6 +162,8 @@ class BreedsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $breed = Breed::find($id);
+        $breed->delete();
+        return redirect('/breeds')->with('success', 'Breed Removed');
     }
 }

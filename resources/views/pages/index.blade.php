@@ -32,7 +32,7 @@
 
   </div>
   <div class="col-lg-6">
-    <img class="img-fluid rounded" src='{{Storage::url('public/images/miscellaneous/registerdog.jpg')}}' alt="Register dog promoter">
+    <img class="img-fluid rounded" src='{{Storage::url(' public/images/miscellaneous/registerdog.jpg ')}}' alt="Register dog promoter">
   </div>
 </div>
 <!-- /.row -->
@@ -41,8 +41,7 @@
 
 <!-- Call to Action Section -->
 @if (!Auth::user())
-  <a class="btn btn-lg btn-success btn-block mb-3" href="{{ route('register') }}">Register!</a>    
-@endif
+<a class="btn btn-lg btn-success btn-block mb-3" href="{{ route('register') }}">Register!</a> @endif
 </div>
 <!-- /.container -->
 @endsection

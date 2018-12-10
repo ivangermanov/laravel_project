@@ -17,7 +17,7 @@
                     <img class="d-block w-100" src="{{$popularBreeds[$i]->img_link}}">
                     <div class="card card-sm carousel-caption bg-dark">
                         <h3>{{$popularBreeds[$i]->breed}}</h3>
-                        <p>{{mb_strimwidth($popularBreeds[$i]->history, 0, 150, '...')}}</p>
+                        <p>{!!mb_strimwidth($popularBreeds[$i]->history, 0, 150, '...')!!}</p>
                     </div>
                 </div>
             @else
@@ -41,6 +41,6 @@
                 </a>
     </div>
     @else 
-    <h1>No popularBreeds found</h1>
+    <h1>No popular breeds found</h1>
     @endif
 </header>

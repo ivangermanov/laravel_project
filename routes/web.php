@@ -25,8 +25,8 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 // Handling for routes which need authentication
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/profile', 'ProfilesController@index')->name('profile');
-    Route::get('/profile/gallery', 'ProfilesController@show_gallery')->name('gallery');
-    Route::get('/profile/edit', 'ProfilesController@edit')->name('edit');
-    Route::post('/profile/update', 'ProfilesController@update')->name('update');
+    Route::get('/profile', 'ProfilesController@index')->name('profile.profile');
+    Route::get('/profile/gallery', 'ProfilesController@show_gallery')->name('profile.gallery');
+    Route::get('/profile/edit', 'ProfilesController@edit')->name('profile.edit');
+    Route::post('/profile/update', 'ProfilesController@update')->name('profile.update');
 });

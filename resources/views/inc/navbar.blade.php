@@ -35,8 +35,8 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             {{-- TODO: authenticate create breed route --}}
             <a class="dropdown-item" href="{{ route('breeds.create') }}">Create Breed</a>
-            <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
-            <a class="dropdown-item" href="{{ route('gallery') }}">Gallery</a>
+            <a class="dropdown-item" href="{{ route('profile.profile') }}">Profile</a>
+            <a class="dropdown-item" href="{{ route('profile.gallery') }}">Gallery</a>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}

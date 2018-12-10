@@ -64,5 +64,27 @@ class BreedTableSeeder extends Seeder
             'visits' => 5,
             'created_at' => '2017-06-29 19:22:35',
         ]);
+        DB::table('breeds')->insert([
+            'breed' => 'Dandog',
+            'height' => 0.29,
+            'weight' => 10,
+            'history' => "<p>The&nbsp;<em><strong>French Bulldog</strong>&nbsp;</em>is a small&nbsp;breed&nbsp;of&nbsp;domestic dog. They were the result in the 1800s of a cross between bulldog ancestors imported from&nbsp;England&nbsp;and local ratters&nbsp;in&nbsp;Paris, France.</p>\r\n\r\n<p>In 2015, they were the fourth most popular registered dog in the&nbsp;United Kingdom&nbsp;and in the&nbsp;U.S. the sixth most popular AKC registered dog breed.&nbsp;They were rated the third most popular dog in Australia in 2017.</p>",
+            'traits' => 'Affectionate, Keen, Playful, Lively, Alert, Bright',
+            'img_link' => Storage::url('images/breeds/ofmVPBf2BCjrXEzRKedVb2uCvFF0PHGxyP0jSGWe.jpeg'),
+            'author' => 'Ivan Germanov',
+            'visits' => 0,
+            'created_at' => '2018-12-09 17:08:40',
+        ]);
+        DB::table('breeds')->insert([
+            'breed' => 'Ivandog',
+            'height' => 3.00,
+            'weight' => 66,
+            'history' => "<p><strong>Not much is known about this mythical species. The creature is said to have roamed the earth around 500 BC and was mainly surviving by eating mammoths.&nbsp;</strong></p>",
+            'traits' => 'Angry, Terrifying, BIG, Loyal',
+            'img_link' => Storage::url('images/breeds/BVmrUy3wIcKrst5XUDq1jsbwal8FhDFBdcPkGt5D.jpeg'),
+            'author' => 'Dan Niculae',
+            'visits' => 0,
+            'created_at' => '2018-12-09 17:56:35',
+        ]);
     }
 }
