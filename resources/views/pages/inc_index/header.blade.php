@@ -17,7 +17,7 @@
                     <img class="d-block w-100" src="{{$popularBreeds[$i]->img_link}}">
                     <div class="card card-sm carousel-caption bg-dark">
                         <h3>{{$popularBreeds[$i]->breed}}</h3>
-                        <p>{!!mb_strimwidth($popularBreeds[$i]->history, 0, 150, '...')!!}</p>
+                        <p>{{mb_strimwidth(str_replace("&nbsp;", ' ', strip_tags($popularBreeds[$i]->history)), 0, 200, '...')}}</p>
                     </div>
                 </div>
             @else

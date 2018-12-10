@@ -32,7 +32,7 @@
 
   </div>
   <div class="col-lg-6">
-    <img class="img-fluid rounded" src='{{Storage::url(' public/images/miscellaneous/registerdog.jpg ')}}' alt="Register dog promoter">
+    <img class="img-fluid rounded" src='{{Storage::url('public/images/miscellaneous/registerdog.jpg')}}' alt="Register dog promoter">
   </div>
 </div>
 <!-- /.row -->
