@@ -120,49 +120,48 @@
             <h5 class="card-header">Traits/Temperament</h5>
             <div class="card-body">
                 <div class="row">
-                    @for ($i = 0; $i
-                    < count($traits); $i++) @if ($i % 3===0 ) <div class="col-lg-6">
+                    @for ($i = 0; $i < count($traits); $i++) 
+                    @if ($i % 3===0 ) 
+                    <div class="col-lg-6">
                         <ul class="list-unstyled mb-0">
                             @endif
                             <li>
                                 <h5 class="text-primary text-center">{{$traits[$i]}}</h5>
                             </li>
-                            @if ($i % 3 === 2)
+                    @if ($i % 3 === 2 || $i === count($traits) - 1)
+                        </ul>
+                    </div>
+                    @endif @endfor
                 </div>
-                </ul>
-                @endif @endfor
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card my-1">
+                    <h5 class="card-header">Height</h5>
+                    <div class="card-body">
+                        <h5 class="text-primary text-center">{{$breed->height}}m</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card my-1">
+                    <h5 class="card-header">Weight</h5>
+                    <div class="card-body">
+                        <h5 class="text-primary text-center">{{$breed->weight}}kg</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="/breeds/{{$breed->id}}/edit" class="btn btn-primary btn-block mb-2 mt-3"><i class="fa fa-cog"></i><span class="ml-1">Edit</span></a>
+            {!!Form::open(['action' => ['BreedsController@destroy', $breed->id, 'method'=>'POST']])!!}
+                {{Form::hidden('_method', 'DELETE')}}
+                {{Form::button('<i class="fa fa-trash"></i> Delete', ['class' => 'btn btn-danger btn-block', 'type'=>'submit'])}}
+            {!!Form::close()!!}
         </div>
     </div>
 </div>
-<div>
-        <a href="/breeds/{{$breed->id}}/edit" class="btn btn-primary btn-block mb-2"><i class="fa fa-cog"></i><span class="ml-1">Edit</span></a>
-        {!!Form::open(['action' => ['BreedsController@destroy', $breed->id, 'method'=>'POST']])!!}
-            {{Form::hidden('_method', 'DELETE')}}
-            {{Form::button('<i class="fa fa-trash"></i> Delete', ['class' => 'btn btn-danger btn-block', 'type'=>'submit'])}}
-        {!!Form::close()!!}
-</div>
-
-<!-- Side Widget -->
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card my-4">
-            <h5 class="card-header">Height</h5>
-            <div class="card-body">
-                <h5 class="text-primary text-center">{{$breed->height}}m</h5>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="card my-4">
-            <h5 class="card-header">Weight</h5>
-            <div class="card-body">
-                <h5 class="text-primary text-center">{{$breed->weight}}kg</h5>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 </div>
 

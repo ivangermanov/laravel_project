@@ -30,16 +30,18 @@
         @for ($i = 0; $i < count($traits) ; $i++) 
         <div class="col col-2">
             Trait {{$i + 1}} {{Form::text('trait'.($i+1), $traits[$i], ['class' => 'form-control', 'onkeypress' => 'return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)'])}}
-        
+        </div>
         @endfor
         @for ($i = count($traits); $i < 6; $i++)
+        <div class="col col-2">
             Trait {{$i + 1}} {{Form::text('trait'.($i+1), '', ['class' => 'form-control', 'onkeypress' => 'return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)'])}}
+        </div>
         @endfor
       </div>
   </div>
+  {{Form::hidden('_method', 'PUT')}}
+  {!! Form::submit('Submit', ['class' => 'btn btn-primary btn-block mb-3']) !!} {!! Form::close() !!}
 </div>
-{{Form::hidden('_method', 'PUT')}}
-{!! Form::submit('Submit', ['class' => 'btn btn-primary btn-block mb-3']) !!} {!! Form::close() !!}
 <script>
     $( "#height" ).blur(function() {
     this.value = parseFloat(this.value).toFixed(2);
