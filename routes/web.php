@@ -29,4 +29,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile/gallery', 'ProfilesController@show_gallery')->name('profile.gallery');
     Route::get('/profile/edit', 'ProfilesController@edit')->name('profile.edit');
     Route::post('/profile/update', 'ProfilesController@update')->name('profile.update');
+    Route::delete('/profile/destroy', 'ProfilesController@destroy')->name('profile.destroy');
 });
