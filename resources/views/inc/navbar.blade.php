@@ -14,6 +14,13 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ url('/about') }}">About</a>
         </li>
+        @if (Auth::check())
+          @if (Auth::user()->isAdmin())
+          <li class="nav-item">
+              <a class="nav-link" href="{{ url('/controlPanel') }}">Control Pannel</a>
+            </li>
+          @endif  
+        @endif
       </ul>
       <ul class="navbar-nav ml-auto">
         <!-- Authentication Links -->
