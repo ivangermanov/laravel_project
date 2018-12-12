@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class ProfilesController extends Controller
 {
@@ -47,7 +48,8 @@ class ProfilesController extends Controller
      */
     public function show($id)
     {
-        return view('profile.show');//->with('breed', $breed)->with('traits', $traits);
+        $user = User::find($id);
+        return view('profile.show')->with('user', $user);
     }
 
     /**
