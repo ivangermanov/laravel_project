@@ -2,15 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 use App\Breed;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BreedsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +51,7 @@ class BreedsController extends Controller
     {
         $this->validate($request, [
             'breed' => 'required',
-            'image' => 'required|image',
+            'image' => 'required|image|max:1999',
             'history' => 'required',
             'height' => 'required',
             'weight' => 'required',
@@ -72,9 +81,11 @@ class BreedsController extends Controller
                 $path = basename($file);
                 $breed->img_link = Storage::url('public/images/breeds/' . $path);
             }
+        } else {
+            $breed->img_link = Storage::url('public/images/miscellaneous/profile2dog.jpg');
         }
 
-        $breed->author = Auth::user()->name;
+        $breed->user_id = Auth::user()->id;
         $breed->save();
         return redirect('/breeds')->with('success', 'Breed Created');
     }
@@ -103,13 +114,14 @@ class BreedsController extends Controller
     public function edit($id)
     {
         $breed = Breed::find($id);
-        if ($breed->author === Auth::id()) {
-            $traits = explode(", ", $breed->traits);
-            return view('breeds.edit')->with('breed', $breed)->with('traits', $traits);
-        } else {
+
+        // Check for correct user
+        if ($breed->user_id !== Auth::id()) {
             return redirect('/breeds')->with('error', 'You are not the author of this breed!');
         }
 
+        $traits = explode(", ", $breed->traits);
+        return view('breeds.edit')->with('breed', $breed)->with('traits', $traits);
     }
 
     /**
@@ -121,22 +133,22 @@ class BreedsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($breed->author === Auth::id()) {
+        if ($breed->user_id === Auth::id()) {
             $this->validate($request, [
                 'breed' => 'required',
-                'image' => 'nullable|image',
+                'image' => 'nullable|image|max:1999',
                 'history' => 'required',
                 'height' => 'required',
                 'weight' => 'required',
             ]);
-    
+
             // Update Breed
             $breed = Breed::find($id);
             $breed->breed = $request->input('breed');
             $breed->height = $request->input('height');
             $breed->weight = $request->input('weight');
             $breed->history = $request->input('history');
-    
+
             // Formatting the traits for the DB
             $traits = [];
             for ($i = 0; $i < 6; $i++) {
@@ -146,7 +158,7 @@ class BreedsController extends Controller
             }
             $traits_str = implode(", ", $traits);
             $breed->traits = strip_tags($traits_str);
-    
+
             // Handling the image
             if ($request->hasFile('image')) {
                 if ($request->file('image')->isValid()) {
@@ -154,9 +166,10 @@ class BreedsController extends Controller
                     $path = basename($file);
                     $breed->img_link = Storage::url('public/images/breeds/' . $path);
                 }
+            } else {
+                $breed->img_link = Storage::url('public/images/miscellaneous/profile2dog.jpg');
             }
-    
-            $breed->author = Auth::user()->id;
+
             $breed->save();
             return redirect('/breeds')->with('success', 'Breed Updated');
         } else {
@@ -173,11 +186,16 @@ class BreedsController extends Controller
     public function destroy($id)
     {
         $breed = Breed::find($id);
-        if ($breed->author === Auth::id()) {
-            $breed->delete();
-            return redirect('/breeds')->with('success', 'Breed Removed');
-        } else {
+        if ($breed->user_id !== Auth::id()) {
             return redirect('/breeds')->with('error', 'You are not the author of this breed!');
         }
+
+        if ($breed->img_link != Storage::url('public/images/miscellaneous/profile2dog.jpg')) {
+            // Delete img
+            // Storage::delete('public/images/'.$breed->img_link);
+        }
+
+        $breed->delete();
+        return redirect('/breeds')->with('success', 'Breed Removed');
     }
 }

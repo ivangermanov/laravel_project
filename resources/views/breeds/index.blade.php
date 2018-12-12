@@ -1,7 +1,7 @@
 @extends('layouts.app') 
 @section('title', 'Breeds') 
-@section('content') {{-- TODO: Add sorting for breeds (alphabetic, most
-recent, most popular) --}}
+@section('content') 
+{{-- TODO: Add sorting for breeds (alphabetic, most recent, most popular) --}}
 @auth
 <div class="row">
     <div class="col col-3 pt-3">
@@ -29,7 +29,7 @@ recent, most popular) --}}
             </div>
             <div class="content">
                 <div class="author">
-                    By <b>{{DB::table('users')->select('name')->where('id', '=', $breeds[$i]->author)->get()[0]->name}}</b> |
+                    By <b>{{$breeds[$i]->user->name}}</b> |
                     <time>{{$breeds[$i]->created_at}}</time>
                 </div>
                 <div>
@@ -41,7 +41,7 @@ recent, most popular) --}}
             </div>
         </div>
     </div>
-    @if ($i % 3===2 || $i===count($breeds) - 1) 
+    @if ($i % 3===2 || $i===count($breeds)) 
         </div>
     @endif
      @endfor 

@@ -21,7 +21,7 @@ class CreateTableBreeds extends Migration
             $table->text('history');
             $table->text('traits');
             $table->string('img_link')->nullable();
-            $table->unsignedInteger('author');
+            $table->unsignedInteger('user_id');
             $table->integer('visits')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();

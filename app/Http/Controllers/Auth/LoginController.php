@@ -31,7 +31,7 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         DB::update('update users set online = 1 where id = ?', [Auth::id()]);
-        return '/';
+        return '/dashboard';
     }
     /**
      * Create a new controller instance.
