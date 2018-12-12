@@ -15,19 +15,22 @@ class UsersTableSeeder extends Seeder
             'name' => 'Dan Niculae',
             'email' => 'danniculae@yopmail.com',
             'password' => bcrypt('secret'),
-            'created_at' => date("Y-m-d H:i:s")
+            'created_at' => date("Y-m-d H:i:s"),
+            'role'=>'2'
         ]);
         DB::table('users')->insert([
             'name' => 'Ivan Germanov',
             'email' => 'ivangermanov@yopmail.com',
             'password' => bcrypt('secret'),
-            'created_at' => date("Y-m-d H:i:s")
+            'created_at' => date("Y-m-d H:i:s"),
+            'role'=>'2'
         ]);
         DB::table('users')->insert([
             'name' => 'Jaap Geurts',
             'email' => 'jaapgeurts@yopmail.com',
             'password' => bcrypt('secret'),
-            'created_at' => date("Y-m-d H:i:s")
+            'created_at' => date("Y-m-d H:i:s"),
+            'role'=>'2'
         ]);
     }
 }

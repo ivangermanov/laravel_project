@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->date('dob')->nullable();
             $table->timestamp('last_online')->nullable();
             $table->rememberToken();
+            $table->unsignedTinyInteger('role')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });
