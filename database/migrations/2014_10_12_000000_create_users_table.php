@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('online')->default(false);
             $table->string('country')->nullable();
+            $table->text('description')->nullable();
             $table->string('breed')->nullable();
             $table->date('dob')->nullable();
             $table->timestamp('last_online')->nullable();

@@ -102,6 +102,10 @@ class ProfilesController extends Controller
         if ($request->filled('password')) {
             $user-> password = Hash::make($request->input('password'));
         }
+        if ($request->filled('description')) {
+            $user-> description = $request->input('description');
+        }
+        
         $user -> dob = date("Y-m-d", strtotime($request->date));  
         $user->save();
 

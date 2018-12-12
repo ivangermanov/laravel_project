@@ -28,19 +28,19 @@
 
       <form class="form-horizontal" role="form">
         <div class="form-group">
-          <label class="col-lg-3 control-label">Name:</label>
+          <label class="col-md-3 control-label">Name:</label>
           <div class="col-lg-8">
           {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => Auth::user()->name])}}
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Email:</label>
+          <label class="col-md-3 control-label">Email:</label>
           <div class="col-lg-8">
               {{Form::text('email', '', ['class' => 'form-control', 'placeholder' => Auth::user()->email])}}
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label " for="sel1">Country:</label>
+          <label class="col-md-3 control-label " for="sel1">Country:</label>
           <div class="col-lg-8">
               {{Form::select('country', array(
                 'Afghanistan' => 'Afghanistan' ,
@@ -276,6 +276,11 @@
           <label class="col-md-3 control-label">Confirm password:</label>
           <div class="col-md-8">
             {{Form::password('conf-pass', ['class' => 'form-control'])}}
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-8">
+            {{Form::label('description', 'Description')}} {{Form::textarea('description', '', ['id' => 'article-ckeditor', 'class' => 'form-control'])}}
           </div>
         </div>
         <div class="form-group">

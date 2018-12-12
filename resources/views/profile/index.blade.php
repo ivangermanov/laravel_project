@@ -135,18 +135,8 @@
 
               <div class="widget-body">
                 <div class="widget-main">
-                  <p>
-                    My job is mostly lorem ipsuming and dolor sit ameting as long as consectetur adipiscing elit.
-                  </p>
-                  <p>
-                    Sometimes quisque commodo massa gets in the way and sed ipsum porttitor facilisis.
-                  </p>
-                  <p>
-                    The best thing about my job is that vestibulum id ligula porta felis euismod and nullam quis risus eget urna mollis ornare.
-                  </p>
-                  <p>
-                    Thanks for visiting my profile.
-                  </p>
+                    {!! Auth::user()->description !!}
+                    {{Auth::user()->description}}
                 </div>
               </div>
             </div>
