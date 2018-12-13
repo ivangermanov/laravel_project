@@ -41,12 +41,23 @@ class PagesController extends Controller
                 ->select()
                 ->where('reviewed', 0)
                 ->orderBy(DB::raw('ifnull(updated_at, created_at)'))
-                ->get();
+                ->paginate(10);
                 
-                $users = User::orderBy('created_at', 'desc')->get();
+                $users = User::orderBy('created_at', 'desc')->paginate(10);
+                $sum = 0;
+                for ($i=0; $i < count($breeds); $i++) 
+                { 
+                    $sum = $sum + $breeds[$i]->visits;
+                }
+                $avgVisits = $sum / count($breeds);
+                $avgPosts = count($breeds)/count($users);
                 return view('pages.controlPanel')
                     ->with('breeds', $breeds)
-                    ->with('users', $users);
+                    ->with('users', $users)
+                    ->with('avgVisits', $avgVisits)
+                    ->with('avgPosts', $avgPosts)
+                    ->with('totalBreeds', count($breeds))
+                    ->with('totalUsers', count($users));
             }
             else
             {
