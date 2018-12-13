@@ -4,7 +4,7 @@
 <div class="container">
   <h1>Edit Profile</h1>
   <hr>
-  {!! Form::open(['action' => 'ProfilesController@update', 'method'=> 'POST']) !!}
+  {!! Form::open(['action' => 'ProfilesController@update', 'method'=> 'POST', 'files' => true, 'enctype' => "multipart/form-data"]) !!}
   <div class="row">
     <!-- left column -->
     <div class="col-md-3">
@@ -12,8 +12,9 @@
           <span class="profile-picture">
             <img class="editable img-responsive profile-picture" alt=" Avatar" id="avatar2" src='{{Storage::url('public/images/miscellaneous/profiledog.jpg')}}' >
           </span>
-        <div class="btn btn-primary mt-3">
-          Upload a different photo<input type="file" class="form-control" hidden>
+        <div class="mt-3">
+            {{Form::label('image', 'Image')}}
+            {{Form::file('image', ['accept' => 'image/*', 'class' => 'btn btn-success btn-block'])}}
         </div>
       </div>
     </div>

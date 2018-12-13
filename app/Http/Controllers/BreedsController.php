@@ -133,6 +133,7 @@ class BreedsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $breed = Breed::find($id);
         if ($breed->user_id === Auth::id()) {
             $this->validate($request, [
                 'breed' => 'required',
@@ -143,7 +144,6 @@ class BreedsController extends Controller
             ]);
 
             // Update Breed
-            $breed = Breed::find($id);
             $breed->breed = $request->input('breed');
             $breed->height = $request->input('height');
             $breed->weight = $request->input('weight');
