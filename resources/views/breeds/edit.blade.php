@@ -2,7 +2,7 @@
 @section('title', 'Edit Breed') 
 @section('content')
 <h1 class="mt-3 text-center">Edit Breed</h1>
-{!! Form::open(['action' => ['BreedsController@update', $breed->id], 'method' => 'POST']) !!}
+{!! Form::open(['action' => ['BreedsController@update', $breed->id], 'method' => 'POST', 'files' => true]) !!}
 <div class="form-group">
     {{Form::label('breed', 'Breed Name')}} {{Form::text('breed', $breed->breed, ['class' => 'form-control'])}}
 </div>
