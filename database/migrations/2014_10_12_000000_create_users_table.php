@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Storage;
 
 class CreateUsersTable extends Migration
 {
@@ -23,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('description')->nullable();
             $table->string('breed')->nullable();
             $table->date('dob')->nullable();
+            $table->string('img_link')->nullable()->default(Storage::url('public/images/miscellaneous/profiledog_.png'));
             $table->timestamp('last_online')->nullable();
             $table->rememberToken();
             $table->unsignedTinyInteger('role')->default(1);

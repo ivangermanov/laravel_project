@@ -9,11 +9,8 @@
     <!-- left column -->
     <div class="col-md-3">
       <div class="text-center">
-          <span class="profile-picture">
-            <img class="editable img-responsive profile-picture" alt=" Avatar" id="avatar2" src='{{Storage::url('public/images/miscellaneous/profiledog.jpg')}}' >
-          </span>
+            <img alt="Avatar" id='avatar' class="editable img-responsive" src="{{Auth::User()->img_link}}" style="border-radius: 50%;" onmouseover="onHover();" onmouseout="offHover();" />
         <div class="mt-3">
-            {{Form::label('image', 'Image')}}
             {{Form::file('image', ['accept' => 'image/*', 'class' => 'btn btn-success btn-block'])}}
         </div>
       </div>
@@ -298,4 +295,15 @@
   {!! Form::close() !!}
 </div>
 <hr>
+<script>
+    function onHover()
+    {
+      $("#avatar").attr('src', '{{substr_replace(Auth::User()->img_link, '_pixelated_', strpos(Auth::User()->img_link, '_'), 1)}}');  
+    }
+  
+    function offHover()
+    {
+        $("#avatar").attr('src', '{{Auth::User()->img_link}}');
+    }
+</script>
 @endsection

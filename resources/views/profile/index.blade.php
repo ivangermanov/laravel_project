@@ -2,30 +2,28 @@
 @section('title', 'Profile') 
 @section('content')
 <div id="user-profile-2" class="user-profile">
-  <div class="tabbable">  
+  <div class="tabbable">
     <div class="tab-content no-border padding-24">
       <div id="home" class="tab-pane in active">
         <div class="row">
           <div class="col-xs-12 col-sm-3 center">
-            <span class="profile-picture">
-              <img class="editable img-responsive profile-picture" alt=" Avatar" id="avatar2" src='{{Storage::url('public/images/miscellaneous/profiledog.jpg')}}' >
-            </span>
+              <img alt="Avatar" id='avatar' class="editable img-responsive" src="{{Auth::User()->img_link}}" style="border-radius: 50%;" onmouseover="onHover();" onmouseout="offHover();" />
             <div class="space space-4"></div>
             <div class="pt-2">
               <a href="{{url('profile/edit')}}" class="btn btn-sm btn-block btn-success">
                 <i class="ace-icon fa fa-cog bigger-120"></i>
                   <span class="bigger-110">Edit profile</span>
               </a>
-              <div class = "pt-1">
-                {!! Form::open(['action' => 'ProfilesController@destroy', 'method' => 'POST']) !!}
-                  {{Form::hidden('_method', 'DELETE')}}
-                  {{Form::button('<i class="ace-icon fa fa-trash bigger-110"> </i> Delete ', ['class'=>'btn btn-sm btn-block btn-danger', 'type'=> 'submit'])}}
-                {!! Form::close() !!}
+              <div class="pt-1">
+                {!! Form::open(['action' => 'ProfilesController@destroy', 'method' => 'POST']) !!} {{Form::hidden('_method', 'DELETE')}}
+                {{Form::button('
+                <i class="ace-icon fa fa-trash bigger-110"> </i> Delete ', ['class'=>'btn btn-sm btn-block btn-danger', 'type'=>
+                'submit'])}} {!! Form::close() !!}
                 <script>
                   $(".delete").on("submit", function(){
                       return confirm("Are you sure?");
                   });
-              </script>
+                </script>
               </div>
             </div>
           </div>
@@ -39,23 +37,20 @@
             <div class="profile-user-info">
               <div class="profile-info-row">
                 <div class="profile-info-name"> E-mail </div>
-
                 <div class="profile-info-value">
                   <span>{{Auth::user()->email}}</span>
                 </div>
               </div>
               @if (isset(Auth::user()->country))
-                <div class="profile-info-row">
-                  <div class="profile-info-name"> Country </div>
+              <div class="profile-info-row">
+                <div class="profile-info-name"> Country </div>
 
-                  <div class="profile-info-value">
-                    <i class="fa fa-map-marker light-orange bigger-110"></i>
-                    <span>{{Auth::user()->country}}</span>
-                  </div>
+                <div class="profile-info-value">
+                  <i class="fa fa-map-marker light-orange bigger-110"></i>
+                  <span>{{Auth::user()->country}}</span>
                 </div>
-              @endif
-
-              @if (isset(Auth::user()->breed))
+              </div>
+              @endif @if (isset(Auth::user()->breed))
               <div class="profile-info-row">
                 <div class="profile-info-name"> Breed </div>
 
@@ -63,10 +58,7 @@
                   <span>{{Auth::user()->breed}}</span>
                 </div>
               </div>
-              @endif
-
-
-              @if (isset(Auth::user()->dob))
+              @endif @if (isset(Auth::user()->dob))
               <div class="profile-info-row">
                 <div class="profile-info-name"> Date of birth </div>
 
@@ -74,26 +66,22 @@
                   <span>{{Auth::user()->dob}}</span>
                 </div>
               </div>
-              @endif
+              @endif @if (isset(Auth::user()->created_at))
+              <div class="profile-info-row">
+                <div class="profile-info-name"> Joined </div>
 
-              @if (isset(Auth::user()->created_at))
-                <div class="profile-info-row">
-                  <div class="profile-info-name"> Joined </div>
-
-                  <div class="profile-info-value">
+                <div class="profile-info-value">
                   <span>{{Auth::user()->created_at}}</span>
-                  </div>
                 </div>
-              @endif
+              </div>
+              @endif @if (Auth::user()->online === 0)
+              <div class="profile-info-row">
+                <div class="profile-info-name"> Last Online </div>
 
-              @if (Auth::user()->online === 0)
-                <div class="profile-info-row">
-                  <div class="profile-info-name"> Last Online </div>
-
-                  <div class="profile-info-value">
-                    <span>{{Auth::user()->last_online}}</span>
-                  </div>
-                </div>   
+                <div class="profile-info-value">
+                  <span>{{Auth::user()->last_online}}</span>
+                </div>
+              </div>
               @endif
 
               <div class="profile-info-row">
@@ -102,7 +90,7 @@
                 </div>
 
                 <div class="profile-info-value">
-                <a href="https://www.facebook.com/{{str_replace(' ', '', Auth::user()->name)}}">Facebook</a>
+                  <a href="https://www.facebook.com/{{str_replace(' ', '', Auth::user()->name)}}">Facebook</a>
                 </div>
               </div>
 
@@ -122,30 +110,40 @@
       </div>
       <!-- /.row -->
 
-        <div class="space-20"></div>
+      <div class="space-20"></div>
 
-        @if (!empty(Auth::user()->description))
-          <div class="row">
-            <div class="col-xs-12 col-sm-6">
-              <div class="widget-box transparent">
-                <div class="widget-header widget-header-small">
-                  <h4 class="widget-title smaller">
-                    <i class="ace-icon fa fa-check-square-o bigger-110 pt-4"></i> Little About Me
-                  </h4>
-                </div>
-                <div class="widget-body">
-                  <div class="widget-main">
-                      {!! Auth::user()->description !!}
-                  </div>
-                </div>
+      @if (!empty(Auth::user()->description))
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <div class="widget-box transparent">
+            <div class="widget-header widget-header-small">
+              <h4 class="widget-title smaller">
+                <i class="ace-icon fa fa-check-square-o bigger-110 pt-4"></i> Little About Me
+              </h4>
+            </div>
+            <div class="widget-body">
+              <div class="widget-main">
+                {!! Auth::user()->description !!}
               </div>
             </div>
           </div>
-        @endif
+        </div>
       </div>
-      <!-- /#home -->
-
-      
+      @endif
     </div>
+    <!-- /#home -->
   </div>
+</div>
+<script>
+  function onHover()
+  {
+    $("#avatar").attr('src', '{{substr_replace(Auth::User()->img_link, '_pixelated_', strpos(Auth::User()->img_link, '_'), 1)}}');  
+  }
+
+  function offHover()
+  {
+      $("#avatar").attr('src', '{{Auth::User()->img_link}}');
+  }
+
+</script>
 @endsection

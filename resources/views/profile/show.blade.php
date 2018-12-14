@@ -7,9 +7,7 @@
       <div id="home" class="tab-pane in active">
         <div class="row">
           <div class="col-xs-12 col-sm-3 center">
-            <span class="profile-picture">
-              <img class="editable img-responsive profile-picture" alt=" Avatar" id="avatar2" src='{{Storage::url('public/images/miscellaneous/profiledog.jpg')}}' >
-            </span>
+              <img alt="Avatar" id='avatar' class="editable img-responsive" src="{{$user->img_link}}" style="border-radius: 50%;" onmouseover="onHover();" onmouseout="offHover();" />
             <div class="space space-4"></div>
             <div class="pt-2">
               @if (Auth::user()->id === $user->id)
@@ -154,4 +152,16 @@
       </div>      
     </div>
   </div>
+<script>
+    function onHover()
+    {
+      $("#avatar").attr('src', '{{substr_replace($user->img_link, '_pixelated_', strpos($user->img_link, '_'), 1)}}');  
+    }
+  
+    function offHover()
+    {
+        $("#avatar").attr('src', '{{$user->img_link}}');
+    }
+  
+  </script>
 @endsection

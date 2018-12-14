@@ -13,7 +13,9 @@
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
     <!-- JavaScript -->
-    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('/js/app.js')}}"></script>
+
+    @yield('head')
 </head>
 
 <body>

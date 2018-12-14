@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class CreateTableBreeds extends Migration
 {
@@ -20,6 +21,7 @@ class CreateTableBreeds extends Migration
             $table->unsignedTinyInteger('weight');
             $table->text('history');
             $table->text('traits');
+            $table->boolean('reviewed')->default(0);
             $table->string('img_link')->nullable();
             $table->unsignedInteger('user_id');
             $table->integer('visits')->default(0);
