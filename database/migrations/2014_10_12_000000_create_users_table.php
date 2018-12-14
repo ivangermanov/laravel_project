@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->unsignedTinyInteger('role')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
+            $table->softDeletes();
         });
     }
 
