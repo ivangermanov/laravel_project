@@ -50,8 +50,16 @@ class ProfilesController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('profile.show')->with('user', $user);
+        $user = User::findOrFail($id);
+        if (Auth::check()) {
+            if (Auth::User()->id === (int)$id) {
+                return redirect('/profile');
+            } else {
+                return view('profile.show')->with('user', $user);
+            }
+        } else {
+            return view('profile.show')->with('user', $user);
+        }
     }
 
     /**

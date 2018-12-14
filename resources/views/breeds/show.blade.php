@@ -11,8 +11,14 @@
 
         <!-- Author -->
         <p class="lead">
-            by
-            <a href="#">{{$breed->user->name}}</a>
+            By
+            @if (empty($breed->user->deleted_at))
+                <a href="/profile/{{$breed->user->id}}">
+                    <b>{{$breed->user->name}}</b>
+                </a>
+            @else
+                <b>{{$breed->user->name}}</b>
+            @endif 
         </p>
 
         <hr>

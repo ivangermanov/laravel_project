@@ -10,25 +10,6 @@
               <img alt="Avatar" id='avatar' class="editable img-responsive" src="{{$user->img_link}}" style="border-radius: 50%;" onmouseover="onHover();" onmouseout="offHover();" />
             <div class="space space-4"></div>
             <div class="pt-2">
-              @if (Auth::user()->id === $user->id)
-                <a href="{{url('profile/edit')}}" class="btn btn-sm btn-block btn-success">
-                    <i class="ace-icon fa fa-cog bigger-120"></i>
-                      <span class="bigger-110">Edit profile</span>
-                </a>
-              <div class = "pt-1">
-                  {!! Form::open(['action' => 'ProfilesController@destroy', 'method' => 'POST']) !!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{Form::button('<i class="ace-icon fa fa-trash bigger-110"> </i> Delete ', ['class'=>'btn btn-sm btn-block btn-danger', 'type'=> 'submit'])}}
-                  {!! Form::close() !!}
-                  <script>
-                    $(".delete").on("submit", function(){
-                        return confirm("Are you sure?");
-                    });
-                </script>
-                </div>
-              </a>
-              @endif
-
             </div>
           </div>
           <!-- /.col -->

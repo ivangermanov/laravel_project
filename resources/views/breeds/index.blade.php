@@ -29,14 +29,22 @@
             </div>
             <div class="content">
                 <div class="author">
-                    By <b>{{$breeds[$i]->user->name}}</b> |
+                    By
+                    @if (empty($breeds[$i]->user->deleted_at))
+                        <a href="/profile/{{$breeds[$i]->user->id}}">
+                            <b>{{$breeds[$i]->user->name}}</b>
+                        </a>
+                    @else
+                        <b>{{$breeds[$i]->user->name}}</b>
+                    @endif 
+                    |
                     <time>{{$breeds[$i]->created_at}}</time>
                 </div>
                 <div>
                     {{mb_strimwidth(str_replace("&nbsp;", ' ', strip_tags($breeds[$i]->history)), 0, 200, '...')}}
                 </div>
                 <div>
-                    <a href="/breeds/{{$breeds[$i]->id}}" class="btn btn-primary btn-md">Read more</a>
+                    <a href="/breeds/{{$breeds[$i]->id}}" class="btn btn-primary btn-block btn-md">Read more</a>
                 </div>
             </div>
         </div>
