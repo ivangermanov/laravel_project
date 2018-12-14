@@ -13,6 +13,7 @@
 
 Route::get('/', 'PagesController@index')->name('index');
 Route::get('/about', 'PagesController@about')->name('about');
+Route::get('/controlPanel', 'PagesController@controlPanel')->name('controlPanel');
 
 Route::resource('breeds', 'BreedsController');
 

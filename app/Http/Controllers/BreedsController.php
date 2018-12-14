@@ -116,12 +116,15 @@ class BreedsController extends Controller
         $breed = Breed::find($id);
 
         // Check for correct user
-        if ($breed->user_id !== Auth::id()) {
-            return redirect('/breeds')->with('error', 'You are not the author of this breed!');
+        if ($breed->user_id !== Auth::id() || Auth::user()->isAdmin()) 
+        {
+            $traits = explode(", ", $breed->traits);
+            return view('breeds.edit')->with('breed', $breed)->with('traits', $traits);
         }
 
-        $traits = explode(", ", $breed->traits);
-        return view('breeds.edit')->with('breed', $breed)->with('traits', $traits);
+
+        return redirect('/breeds')->with('error', 'You are not the author of this breed!');
+
     }
 
     /**
@@ -134,7 +137,7 @@ class BreedsController extends Controller
     public function update(Request $request, $id)
     {
         $breed = Breed::find($id);
-        if ($breed->user_id === Auth::id()) {
+        if ($breed->user_id === Auth::id() || Auth::user()->isAdmin()) {
             $this->validate($request, [
                 'breed' => 'required',
                 'image' => 'nullable|image|max:1999',
@@ -166,8 +169,6 @@ class BreedsController extends Controller
                     $path = basename($file);
                     $breed->img_link = Storage::url('public/images/breeds/' . $path);
                 }
-            } else {
-                $breed->img_link = Storage::url('public/images/miscellaneous/profile2dog.jpg');
             }
 
             $breed->save();
@@ -186,16 +187,15 @@ class BreedsController extends Controller
     public function destroy($id)
     {
         $breed = Breed::find($id);
-        if ($breed->user_id !== Auth::id()) {
-            return redirect('/breeds')->with('error', 'You are not the author of this breed!');
+        if ($breed->user_id === Auth::id() || Auth::user()->isAdmin()) {
+            if ($breed->img_link != Storage::url('public/images/miscellaneous/profile2dog.jpg')) {
+                // Delete img
+                // Storage::delete('public/images/'.$breed->img_link);
+            }
+            $breed->delete();
+            return redirect('/breeds')->with('success', 'Breed Removed');            
         }
 
-        if ($breed->img_link != Storage::url('public/images/miscellaneous/profile2dog.jpg')) {
-            // Delete img
-            // Storage::delete('public/images/'.$breed->img_link);
-        }
-
-        $breed->delete();
-        return redirect('/breeds')->with('success', 'Breed Removed');
+        return redirect('/breeds')->with('error', 'You are not the author of this breed!');
     }
 }

@@ -154,7 +154,7 @@
             </div>
         </div>
         @if (!Auth::guest())
-            @if (Auth::id() === $breed->user_id)
+            @if (Auth::id() === $breed->user_id || Auth::user()->isAdmin())
                 <div>
                     <a href="/breeds/{{$breed->id}}/edit" class="btn btn-primary btn-block mb-2 mt-3"><i class="fa fa-cog"></i><span class="ml-1">Edit</span></a>
                     {!!Form::open(['action' => ['BreedsController@destroy', $breed->id, 'method'=>'POST']])!!}

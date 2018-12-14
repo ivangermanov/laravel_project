@@ -31,4 +31,15 @@ class User extends Authenticatable
     public function breeds() {
         return $this->hasMany('App\Breed');
     }
+    public function isAdmin()
+    {
+        if ($this->role === 2) 
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
 }
