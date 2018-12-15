@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Image;
 
 class BreedsController extends Controller
 {
@@ -77,12 +78,33 @@ class BreedsController extends Controller
         // Handling the image
         if ($request->hasFile('image')) {
             if ($request->file('image')->isValid()) {
-                $file = $request->image->store('public/images/breeds');
-                $path = basename($file);
-                $breed->img_link = Storage::url('public/images/breeds/' . $path);
+                // Store image
+                // Get filename with extension
+                $filenamewithextension = $request->file('image')->getClientOriginalName();
+
+                // Get filename without extension
+                $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+                $filename = str_replace('_', '', $filename);
+
+                // Get file extension
+                $extension = $request->file('image')->getClientOriginalExtension();
+
+                // Filename to store with extension
+                $filenametostore = $filename . '_' . time() . '.png';
+
+                $img = Image::make($request->file('image')->getRealPath())->resize(1280, 720)->encode('png');
+                $img->stream();
+                Storage::put('public/images/breeds/posts/' . $filenametostore, $img);
+
+                // Resize image here
+                $img = Image::make($request->file('image')->getRealPath())->resize(350, 196)->encode('png');
+                $img->stream();
+
+                Storage::put('public/images/breeds/' . $filenametostore, $img);
+
+                // Store in DB
+                $breed->img_link = Storage::url('public/images/breeds/' . $filenametostore);
             }
-        } else {
-            $breed->img_link = Storage::url('public/images/miscellaneous/profile2dog.jpg');
         }
 
         $breed->user_id = Auth::user()->id;
@@ -116,12 +138,10 @@ class BreedsController extends Controller
         $breed = Breed::find($id);
 
         // Check for correct user
-        if ($breed->user_id !== Auth::id() || Auth::user()->isAdmin()) 
-        {
+        if ($breed->user_id !== Auth::id() || Auth::user()->isAdmin()) {
             $traits = explode(", ", $breed->traits);
             return view('breeds.edit')->with('breed', $breed)->with('traits', $traits);
         }
-
 
         return redirect('/breeds')->with('error', 'You are not the author of this breed!');
 
@@ -165,9 +185,32 @@ class BreedsController extends Controller
             // Handling the image
             if ($request->hasFile('image')) {
                 if ($request->file('image')->isValid()) {
-                    $file = $request->image->store('public/images/breeds');
-                    $path = basename($file);
-                    $breed->img_link = Storage::url('public/images/breeds/' . $path);
+                    // Store image
+                    // Get filename with extension
+                    $filenamewithextension = $request->file('image')->getClientOriginalName();
+
+                    // Get filename without extension
+                    $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+                    $filename = str_replace('_', '', $filename);
+
+                    // Get file extension
+                    $extension = $request->file('image')->getClientOriginalExtension();
+
+                    // Filename to store with extension
+                    $filenametostore = $filename . '_' . time() . '.png';
+
+                    $img = Image::make($request->file('image')->getRealPath())->resize(1280, 720)->encode('png');
+                    $img->stream();
+                    Storage::put('public/images/breeds/posts/' . $filenametostore, $img);
+
+                    // Resize image here
+                    $img = Image::make($request->file('image')->getRealPath())->resize(350, 200)->encode('png');
+                    $img->stream();
+
+                    Storage::put('public/images/breeds/' . $filenametostore, $img);
+
+                    // Store in DB
+                    $breed->img_link = Storage::url('public/images/breeds/' . $filenametostore);
                 }
             }
 
@@ -193,7 +236,7 @@ class BreedsController extends Controller
                 // Storage::delete('public/images/'.$breed->img_link);
             }
             $breed->delete();
-            return redirect('/breeds')->with('success', 'Breed Removed');            
+            return redirect('/breeds')->with('success', 'Breed Removed');
         }
 
         return redirect('/breeds')->with('error', 'You are not the author of this breed!');
