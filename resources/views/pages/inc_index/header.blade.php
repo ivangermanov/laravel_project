@@ -16,7 +16,7 @@
                 <div class="carousel-item active">
                     <img class="d-block w-100" src="{{$popularBreeds[$i]->img_link}}">
                     <div class="card card-sm carousel-caption bg-dark">
-                        <h3>{{$popularBreeds[$i]->breed}}</h3>
+                        <a href="/breeds/{{$popularBreeds[$i]->id}}"><h3>{{$popularBreeds[$i]->breed}}</h3></a>
                         <p>{{mb_strimwidth(str_replace("&nbsp;", ' ', strip_tags($popularBreeds[$i]->history)), 0, 200, '...')}}</p>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                 <div class="carousel-item">
                     <img class="d-block w-100" src="{{$popularBreeds[$i]->img_link}}">
                     <div class="card card-sm carousel-caption bg-dark">
-                        <h3>{{$popularBreeds[$i]->breed}}</h3>
+                        <a href="/breeds/{{$popularBreeds[$i]->id}}"><h3>{{$popularBreeds[$i]->breed}}</h3></a>
                         <p>{{mb_strimwidth($popularBreeds[$i]->history, 0, 200, '...')}}</p>
                     </div>
                 </div>
