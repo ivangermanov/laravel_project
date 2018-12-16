@@ -50,8 +50,16 @@ class ProfilesController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('profile.show')->with('user', $user);
+        $user = User::findOrFail($id);
+        if (Auth::check()) {
+            if (Auth::User()->id === (int)$id) {
+                return redirect('/profile');
+            } else {
+                return view('profile.show')->with('user', $user);
+            }
+        } else {
+            return view('profile.show')->with('user', $user);
+        }
     }
 
     /**
@@ -85,59 +93,12 @@ class ProfilesController extends Controller
      */
     public function update(Request $request)
     {
-        // Handling the image
-        if ($request->hasFile('image')) {
-            if ($request->file('image')->isValid()) {
-                // Store image
-                // Get filename with extension
-                $filenamewithextension = $request->file('image')->getClientOriginalName();
-
-                // Get filename without extension
-                $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-
-                // Get file extension
-                $extension = $request->file('image')->getClientOriginalExtension();
-
-                // Filename to store with extension
-                $filenametostore = $filename . '_' . time() . '.png';
-                
-                // Upload File
-                $request->file('image')->storeAs('public/images/profile', $filenametostore);
-                //$request->file('image')->storeAs('public/images/profile/thumbnail', $filenametostore);
-
-                // Resize image here
-                //return Storage::url('public/images/miscellaneous/roundmask.png');
-                $img = Image::make($request->file('image')->getRealPath())->fit(250,250)->encode('png');
-
-                $width = $img->getWidth();
-                $height = $img->getHeight();
-                $mask = Image::canvas($width, $height);
-
-                $mask->circle($width, $width/2, $height/2, function($draw) {
-                    $draw->background('#fff');
-                });
-
-                $img->mask($mask);
-                $img->stream();
-                
-                if (!Storage::exists('public/images/profile/thumbnail/')) {
-                    Storage::makeDirectory('public/images/profile/thumbnail/'); //creates directory
-                }
-
-                Storage::put('public/images/profile/thumbnail/'.$filenametostore, $img);
-                //$img->save($thumbnailpath);
-                return 'success';
-                // Store in DB
-                //$breed->img_link = 
-            }
-        }
-
         $this->validate($request, [
             'password' => 'nullable|min:4',
             'conf-pass' => 'nullable|same:password',
             'image' => 'nullable|image|max:1999',
         ]);
-
+        
         $user = Auth::user();
         if ($request->filled('name')) {
             $user->name = $request->input('name');
@@ -157,11 +118,68 @@ class ProfilesController extends Controller
         if ($request->filled('description')) {
             $user->description = $request->input('description');
         }
+        if ($request->filled('date')) {
+            $user->dob = date("Y-m-d", strtotime($request->date));
+        }
 
-        $user->dob = date("Y-m-d", strtotime($request->date));
+        // Handling the image
+        if ($request->hasFile('image')) {
+            if ($request->file('image')->isValid()) {
+                // Store image
+                // Get filename with extension
+                $filenamewithextension = $request->file('image')->getClientOriginalName();
+
+                // Get filename without extension
+                $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+                $filename = str_replace('_', '', $filename);
+                
+                // Get file extension
+                $extension = $request->file('image')->getClientOriginalExtension();
+
+                // Filename to store with extension
+                $filenametostore = $filename . '_' . time() . '.png';
+                
+                // Filename to store with pixelated and extension
+                $filenametostore_pixelation = $filename . '_pixelated_' . time() . '.png';
+
+                // Upload File
+                $request->file('image')->storeAs('public/images/profile', $filenametostore);
+                //$request->file('image')->storeAs('public/images/profile/thumbnail', $filenametostore);
+
+                // Resize image here
+                //return Storage::url('public/images/miscellaneous/roundmask.png');
+                $img = Image::make($request->file('image')->getRealPath())->fit(250,250)->encode('png');
+
+                $width = $img->getWidth();
+                $height = $img->getHeight();
+                $mask = Image::canvas($width, $height);
+
+                $mask->circle($width, $width/2, $height/2, function($draw) {
+                    $draw->background('#fff');
+                });
+
+                $img->mask($mask);
+                $imgPixelated = clone $img;
+                $img->stream();
+                
+                // apply pixelation effect
+                $imgPixelated->pixelate(12);
+                $imgPixelated -> stream();
+
+                if (!Storage::exists('public/images/profile/thumbnail/')) {
+                    Storage::makeDirectory('public/images/profile/thumbnail/'); //creates directory
+                }
+
+                Storage::put('public/images/profile/thumbnail/'.$filenametostore, $img);
+                Storage::put('public/images/profile/thumbnail/'.$filenametostore_pixelation, $imgPixelated);
+                
+                // Store in DB
+                $user->img_link = Storage::url('public/images/profile/thumbnail/'.$filenametostore);
+            }
+        }
+        
         $user->save();
-
-        return view('profile.index');
+        return redirect('/profile');
     }
 
     /**

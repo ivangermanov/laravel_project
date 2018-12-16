@@ -11,8 +11,14 @@
 
         <!-- Author -->
         <p class="lead">
-            by
-            <a href="#">{{$breed->user->name}}</a>
+            By
+            @if (empty($breed->user->deleted_at))
+                <a href="/profile/{{$breed->user->id}}">
+                    <b>{{$breed->user->name}}</b>
+                </a>
+            @else
+                <b>{{$breed->user->name}}</b>
+            @endif 
         </p>
 
         <hr>
@@ -26,7 +32,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="{{$breed->img_link}}" alt="Picture of {{$breed->breed}}">
+        <img class="img-fluid rounded" src="{{dirname($breed->img_link).'/posts/'.basename($breed->img_link)}}" alt="Picture of {{$breed->breed}}">
 
         <hr>
 

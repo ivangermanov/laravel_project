@@ -22,13 +22,14 @@ Route::resource('breeds', 'BreedsController');
 
 Auth::routes();
 
+Route::get('/profile/{id}', 'ProfilesController@show')->name('profile.show');
+
 // Handling for routes which need authentication
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/profile', 'ProfilesController@index')->name('profile.profile');
     Route::get('/profile/gallery', 'ProfilesController@show_gallery')->name('profile.gallery');
     Route::get('/profile/edit', 'ProfilesController@edit')->name('profile.edit');
-    Route::get('/profile/{id}', 'ProfilesController@show')->name('profile.show');
     Route::post('/profile/update', 'ProfilesController@update')->name('profile.update');
     Route::delete('/profile/destroy', 'ProfilesController@destroy')->name('profile.destroy');
 });
