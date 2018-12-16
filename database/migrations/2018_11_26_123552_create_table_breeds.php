@@ -16,7 +16,7 @@ class CreateTableBreeds extends Migration
     {
         Schema::create('breeds', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('breed');
+            $table->string('breed')->unique();
             $table->unsignedDecimal('height', 3, 2);
             $table->unsignedTinyInteger('weight');
             $table->text('history');
