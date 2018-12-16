@@ -37,27 +37,29 @@ class PagesController extends Controller
         {
             if (Auth::user()->isAdmin())
             {
+                $sbreeds = DB::table('breeds')->where('reviewed', 0)->get();
+                $susers = DB::table('users')->get();
                 $breeds = DB::table('breeds')
                 ->select()
                 ->where('reviewed', 0)
                 ->orderBy(DB::raw('ifnull(updated_at, created_at)'))
-                ->paginate(10);
+                ->paginate(10,['*'],'breed');
                 
-                $users = User::orderBy('created_at', 'desc')->paginate(10);
+                $users = User::orderBy('created_at', 'desc')->paginate(10,['*'],'user');
                 $sum = 0;
-                for ($i=0; $i < count($breeds); $i++) 
+                for ($i=0; $i < count($sbreeds); $i++) 
                 { 
-                    $sum = $sum + $breeds[$i]->visits;
+                    $sum = $sum + $sbreeds[$i]->visits;
                 }
-                $avgVisits = $sum / count($breeds);
-                $avgPosts = count($breeds)/count($users);
+                $avgVisits = $sum / count($sbreeds);
+                $avgPosts = count($sbreeds)/count($susers);
                 return view('pages.controlPanel')
                     ->with('breeds', $breeds)
                     ->with('users', $users)
                     ->with('avgVisits', $avgVisits)
                     ->with('avgPosts', $avgPosts)
-                    ->with('totalBreeds', count($breeds))
-                    ->with('totalUsers', count($users));
+                    ->with('totalBreeds', count($sbreeds))
+                    ->with('totalUsers', count($susers));
             }
             else
             {

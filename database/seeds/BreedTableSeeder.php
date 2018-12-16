@@ -86,5 +86,49 @@ class BreedTableSeeder extends Seeder
             'visits' => 0,
             'created_at' => '2018-12-09 17:56:35',
         ]);
+        DB::table('breeds')->insert([
+            'breed' => 'Pit bull',
+            'height' => 0.49,
+            'weight' => 21,
+            'history' => 'Pit bull is the common name for a type of dog descended from bulldogs and terriers. Formal breeds often considered to be of the pit bull type include the American Pit Bull Terrier, American Staffordshire Terrier, American Bully, and Staffordshire Bull Terrier. The American Bulldog is also sometimes included. Mixed-breed dogs which physically resemble these breeds often get labelled as "pit bulls" by shelters. Many of these breeds were originally developed as fighting dogs from cross breeding bull-baiting dogs (used to hold the faces and heads of larger animals such as bulls) and terriers. After the use of dogs in blood sports was banned, such dogs were used as catch dogs in the United States for semi-wild cattle and hogs, to hunt and drive livestock, and as family companions. Despite dog fighting now being illegal in the United States, it still exists as an underground activity, and pit bulls are a common type used. Owners of pit bull-type dogs deal with a strong breed stigma, however controlled studies have not identified this breed group as disproportionately dangerous. Some jurisdictions have enacted legislation banning the group of breeds, and some insurance companies do not cover liability from pit bull bites. Among other roles, pit bulls have served as police dogs, search and rescue dogs, and several have appeared on film.',
+            'traits' => 'Loyal, Strong-willed, Stubborn, Obedient, Courageous',
+            'img_link' => Storage::url('public/images/breeds/pitbull.jpg'),
+            'user_id' => 2,
+            'visits' => 1,
+            'created_at' => '2017-06-22 19:22:35',
+        ]);
+        DB::table('breeds')->insert([
+            'breed' => 'Pit bull',
+            'height' => 0.49,
+            'weight' => 21,
+            'history' => 'Pit bull is the common name for a type of dog descended from bulldogs and terriers. Formal breeds often considered to be of the pit bull type include the American Pit Bull Terrier, American Staffordshire Terrier, American Bully, and Staffordshire Bull Terrier. The American Bulldog is also sometimes included. Mixed-breed dogs which physically resemble these breeds often get labelled as "pit bulls" by shelters. Many of these breeds were originally developed as fighting dogs from cross breeding bull-baiting dogs (used to hold the faces and heads of larger animals such as bulls) and terriers. After the use of dogs in blood sports was banned, such dogs were used as catch dogs in the United States for semi-wild cattle and hogs, to hunt and drive livestock, and as family companions. Despite dog fighting now being illegal in the United States, it still exists as an underground activity, and pit bulls are a common type used. Owners of pit bull-type dogs deal with a strong breed stigma, however controlled studies have not identified this breed group as disproportionately dangerous. Some jurisdictions have enacted legislation banning the group of breeds, and some insurance companies do not cover liability from pit bull bites. Among other roles, pit bulls have served as police dogs, search and rescue dogs, and several have appeared on film.',
+            'traits' => 'Loyal, Strong-willed, Stubborn, Obedient, Courageous',
+            'img_link' => Storage::url('public/images/breeds/pitbull.jpg'),
+            'user_id' => 2,
+            'visits' => 1,
+            'created_at' => '2017-06-22 19:22:35',
+        ]);
+        DB::table('breeds')->insert([
+            'breed' => 'Pit bull',
+            'height' => 0.49,
+            'weight' => 21,
+            'history' => 'Pit bull is the common name for a type of dog descended from bulldogs and terriers. Formal breeds often considered to be of the pit bull type include the American Pit Bull Terrier, American Staffordshire Terrier, American Bully, and Staffordshire Bull Terrier. The American Bulldog is also sometimes included. Mixed-breed dogs which physically resemble these breeds often get labelled as "pit bulls" by shelters. Many of these breeds were originally developed as fighting dogs from cross breeding bull-baiting dogs (used to hold the faces and heads of larger animals such as bulls) and terriers. After the use of dogs in blood sports was banned, such dogs were used as catch dogs in the United States for semi-wild cattle and hogs, to hunt and drive livestock, and as family companions. Despite dog fighting now being illegal in the United States, it still exists as an underground activity, and pit bulls are a common type used. Owners of pit bull-type dogs deal with a strong breed stigma, however controlled studies have not identified this breed group as disproportionately dangerous. Some jurisdictions have enacted legislation banning the group of breeds, and some insurance companies do not cover liability from pit bull bites. Among other roles, pit bulls have served as police dogs, search and rescue dogs, and several have appeared on film.',
+            'traits' => 'Loyal, Strong-willed, Stubborn, Obedient, Courageous',
+            'img_link' => Storage::url('public/images/breeds/pitbull.jpg'),
+            'user_id' => 2,
+            'visits' => 1,
+            'created_at' => '2017-06-22 19:22:35',
+        ]);
+        DB::table('breeds')->insert([
+            'breed' => 'Pit bull',
+            'height' => 0.49,
+            'weight' => 21,
+            'history' => 'Pit bull is the common name for a type of dog descended from bulldogs and terriers. Formal breeds often considered to be of the pit bull type include the American Pit Bull Terrier, American Staffordshire Terrier, American Bully, and Staffordshire Bull Terrier. The American Bulldog is also sometimes included. Mixed-breed dogs which physically resemble these breeds often get labelled as "pit bulls" by shelters. Many of these breeds were originally developed as fighting dogs from cross breeding bull-baiting dogs (used to hold the faces and heads of larger animals such as bulls) and terriers. After the use of dogs in blood sports was banned, such dogs were used as catch dogs in the United States for semi-wild cattle and hogs, to hunt and drive livestock, and as family companions. Despite dog fighting now being illegal in the United States, it still exists as an underground activity, and pit bulls are a common type used. Owners of pit bull-type dogs deal with a strong breed stigma, however controlled studies have not identified this breed group as disproportionately dangerous. Some jurisdictions have enacted legislation banning the group of breeds, and some insurance companies do not cover liability from pit bull bites. Among other roles, pit bulls have served as police dogs, search and rescue dogs, and several have appeared on film.',
+            'traits' => 'Loyal, Strong-willed, Stubborn, Obedient, Courageous',
+            'img_link' => Storage::url('public/images/breeds/pitbull.jpg'),
+            'user_id' => 2,
+            'visits' => 1,
+            'created_at' => '2017-06-22 19:22:35',
+        ]);
     }
 }

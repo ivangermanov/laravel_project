@@ -46,5 +46,125 @@ class UsersTableSeeder extends Seeder
             'last_online' => '2018-12-12 18:54:13',
             'role'=>'2'
         ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts2@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts3@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurt4@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts5@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts6@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts7@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts8@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts9@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts0@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts11@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts12@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts13@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts14@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts15@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jaap Geurts',
+            'email' => 'jaapgeurts16@yopmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'last_online' => '2018-12-12 18:54:13',
+            'role'=>'2'
+        ]);
     }
 }

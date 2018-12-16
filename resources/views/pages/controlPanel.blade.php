@@ -30,9 +30,9 @@
                 @else
                   <tr><td>No created breeds to review</td></tr>
                 @endif
-                {{$breeds->links()}}
               </tbody>
             </table>
+            {{$breeds->links()}}
           </div>      
         </rd-widget-body>
       </rd-widget>
@@ -59,9 +59,9 @@
                 @else
                   <tr><td>No created breeds to review</td></tr>
                 @endif
-                {{$users->links()}}
               </tbody>
             </table>
+            {{$users->links()}}
           </div>      
         </rd-widget-body>
       </rd-widget>
