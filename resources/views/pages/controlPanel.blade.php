@@ -53,7 +53,7 @@
                 @if (count($users)>0)
                   @for ($i = 0; $i < count($users); $i++)
                     @if (!$users[$i]->reviewed)
-                      <tr><td><a href="/profile/{{$users[$i]->id}}">{{$users[$i]->name}}</a></td><td>{{$users[$i]->created_at}}</td><td>@if($users[$i]->online === 0)<i class="fa fa-remove red"></i>@else<i><i class="fa fa-check green"></i>@endif</td></tr>
+                      <tr><td><a href="/profile/{{$users[$i]->id}}">{{$users[$i]->name}}</a></td><td>{{$users[$i]->created_at}}</td><td>@if($users[$i]->online === 0)<i class="fa fa-circle red"></i>@else<i><i class="fa fa-circle green"></i>@endif</td></tr>
                     @endif
                   @endfor
                 @else
