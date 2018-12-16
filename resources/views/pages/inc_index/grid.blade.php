@@ -13,7 +13,7 @@
                                 <h4 class="card-title">
                                     <a href="/breeds/{{$recentBreeds[$i]->id}}">{{$recentBreeds[$i]->breed}}</a>
                                 </h4>
-                                <p class="card-text">{{mb_strimwidth($recentBreeds[$i]->history, 0, 200, '...')}}</p>
+                                <p class="card-text">{{mb_strimwidth(str_replace("&nbsp;", ' ', strip_tags($recentBreeds[$i]->history)), 0, 200, '...')}}</p>
                             </div>
                         </div>
                     </div>
@@ -23,6 +23,6 @@
             @endfor
         </div>
     @else
-        <h1>No recentBreeds found</h1>
+        <h1>No recent breeds found</h1>
     @endif
 </div>

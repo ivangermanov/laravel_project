@@ -3,10 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Breed;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Image;
 
 class BreedsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +28,7 @@ class BreedsController extends Controller
      */
     public function index()
     {
-        $breeds = Breed::all();
+        $breeds = Breed::orderBy('breed')->paginate(9);
         return view('breeds.index')->with('breeds', $breeds);
     }
 
@@ -25,7 +39,7 @@ class BreedsController extends Controller
      */
     public function create()
     {
-        //
+        return view('breeds.create');
     }
 
     /**
@@ -36,7 +50,66 @@ class BreedsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'breed' => 'required',
+            'image' => 'required|image|max:1999',
+            'history' => 'required',
+            'height' => 'required',
+            'weight' => 'required',
+        ]);
+
+        // Create Breed
+        $breed = new Breed;
+        $breed->breed = $request->input('breed');
+        $breed->height = $request->input('height');
+        $breed->weight = $request->input('weight');
+        $breed->history = $request->input('history');
+
+        // Formatting the traits for the DB
+        $traits = [];
+        for ($i = 0; $i < 6; $i++) {
+            if ($request->filled('trait' . ($i + 1))) {
+                array_push($traits, $request->input('trait' . ($i + 1)));
+            }
+        }
+        $traits_str = implode(", ", $traits);
+        $breed->traits = strip_tags($traits_str);
+
+        // Handling the image
+        if ($request->hasFile('image')) {
+            if ($request->file('image')->isValid()) {
+                // Store image
+                // Get filename with extension
+                $filenamewithextension = $request->file('image')->getClientOriginalName();
+
+                // Get filename without extension
+                $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+                $filename = str_replace('_', '', $filename);
+
+                // Get file extension
+                $extension = $request->file('image')->getClientOriginalExtension();
+
+                // Filename to store with extension
+                $filenametostore = $filename . '_' . time() . '.png';
+
+                $img = Image::make($request->file('image')->getRealPath())->resize(1280, 720)->encode('png');
+                $img->stream();
+                Storage::put('public/images/breeds/posts/' . $filenametostore, $img);
+
+                // Resize image here
+                $img = Image::make($request->file('image')->getRealPath())->resize(350, 196)->encode('png');
+                $img->stream();
+
+                Storage::put('public/images/breeds/' . $filenametostore, $img);
+
+                // Store in DB
+                $breed->img_link = Storage::url('public/images/breeds/' . $filenametostore);
+            }
+        }
+
+        $breed->user_id = Auth::user()->id;
+        $breed->save();
+        return redirect('/breeds')->with('success', 'Breed Created');
     }
 
     /**
@@ -49,6 +122,8 @@ class BreedsController extends Controller
     {
         $breed = Breed::find($id);
         $traits = explode(", ", $breed['traits']);
+        $breed->visits = $breed->visits + 1;
+        $breed->save();
         return view('breeds.show')->with('breed', $breed)->with('traits', $traits);
     }
 
@@ -60,7 +135,16 @@ class BreedsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $breed = Breed::find($id);
+
+        // Check for correct user
+        if ($breed->user_id !== Auth::id() || Auth::user()->isAdmin()) {
+            $traits = explode(", ", $breed->traits);
+            return view('breeds.edit')->with('breed', $breed)->with('traits', $traits);
+        }
+
+        return redirect('/breeds')->with('error', 'You are not the author of this breed!');
+
     }
 
     /**
@@ -72,7 +156,69 @@ class BreedsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $breed = Breed::find($id);
+        if ($breed->user_id === Auth::id() || Auth::user()->isAdmin()) {
+            $this->validate($request, [
+                'breed' => 'required',
+                'image' => 'nullable|image|max:1999',
+                'history' => 'required',
+                'height' => 'required',
+                'weight' => 'required',
+            ]);
+
+            // Update Breed
+            $breed->breed = $request->input('breed');
+            $breed->height = $request->input('height');
+            $breed->weight = $request->input('weight');
+            $breed->history = $request->input('history');
+
+            // Formatting the traits for the DB
+            $traits = [];
+            for ($i = 0; $i < 6; $i++) {
+                if ($request->filled('trait' . ($i + 1))) {
+                    array_push($traits, $request->input('trait' . ($i + 1)));
+                }
+            }
+            $traits_str = implode(", ", $traits);
+            $breed->traits = strip_tags($traits_str);
+
+            // Handling the image
+            if ($request->hasFile('image')) {
+                if ($request->file('image')->isValid()) {
+                    // Store image
+                    // Get filename with extension
+                    $filenamewithextension = $request->file('image')->getClientOriginalName();
+
+                    // Get filename without extension
+                    $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+                    $filename = str_replace('_', '', $filename);
+
+                    // Get file extension
+                    $extension = $request->file('image')->getClientOriginalExtension();
+
+                    // Filename to store with extension
+                    $filenametostore = $filename . '_' . time() . '.png';
+
+                    $img = Image::make($request->file('image')->getRealPath())->resize(1280, 720)->encode('png');
+                    $img->stream();
+                    Storage::put('public/images/breeds/posts/' . $filenametostore, $img);
+
+                    // Resize image here
+                    $img = Image::make($request->file('image')->getRealPath())->resize(350, 200)->encode('png');
+                    $img->stream();
+
+                    Storage::put('public/images/breeds/' . $filenametostore, $img);
+
+                    // Store in DB
+                    $breed->img_link = Storage::url('public/images/breeds/' . $filenametostore);
+                }
+            }
+
+            $breed->save();
+            return redirect('/breeds')->with('success', 'Breed Updated');
+        } else {
+            return redirect('/breeds')->with('error', 'You are not the author of this breed!');
+        }
     }
 
     /**
@@ -83,6 +229,16 @@ class BreedsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $breed = Breed::find($id);
+        if ($breed->user_id === Auth::id() || Auth::user()->isAdmin()) {
+            if ($breed->img_link != Storage::url('public/images/miscellaneous/profile2dog.jpg')) {
+                // Delete img
+                // Storage::delete('public/images/'.$breed->img_link);
+            }
+            $breed->delete();
+            return redirect('/breeds')->with('success', 'Breed Removed');
+        }
+
+        return redirect('/breeds')->with('error', 'You are not the author of this breed!');
     }
 }

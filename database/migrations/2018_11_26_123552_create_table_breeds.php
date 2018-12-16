@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class CreateTableBreeds extends Migration
 {
@@ -15,15 +16,17 @@ class CreateTableBreeds extends Migration
     {
         Schema::create('breeds', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('breed');
-            $table->decimal('height', 3, 2);
+            $table->string('breed')->unique();
+            $table->unsignedDecimal('height', 3, 2);
             $table->unsignedTinyInteger('weight');
             $table->text('history');
             $table->text('traits');
+            $table->boolean('reviewed')->default(0);
             $table->string('img_link')->nullable();
-            $table->string('author');
+            $table->unsignedInteger('user_id');
             $table->integer('visits')->default(0);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

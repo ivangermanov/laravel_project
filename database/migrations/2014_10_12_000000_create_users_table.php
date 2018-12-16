@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Storage;
 
 class CreateUsersTable extends Migration
 {
@@ -17,10 +18,19 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('online')->default(false);
+            $table->string('country')->nullable();
+            $table->text('description')->nullable();
+            $table->string('breed')->nullable();
+            $table->date('dob')->nullable();
+            $table->string('img_link')->nullable()->default(Storage::url('public/images/miscellaneous/profiledog_.png'));
+            $table->timestamp('last_online')->nullable();
             $table->rememberToken();
-            $table->timestamps();
+            $table->unsignedTinyInteger('role')->default(1);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable();
+            $table->softDeletes();
         });
     }
 
