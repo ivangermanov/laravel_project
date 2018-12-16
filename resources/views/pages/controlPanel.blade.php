@@ -81,7 +81,6 @@
               <tr><td>Total number of users</td><td>{{$totalUsers}}</td></tr>
               <tr><td>Average visits per post</td><td>{{number_format($avgVisits,2)}}</td></tr>
               <tr><td>Average posts per user</td><td>{{number_format($avgPosts,2)}}</td></tr>
-              <tr><td>a</td><td></td></tr>
             </table>
           </div>      
         </rd-widget-body>
