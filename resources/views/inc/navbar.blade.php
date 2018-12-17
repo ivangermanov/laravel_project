@@ -17,7 +17,7 @@
         @if (Auth::check())
           @if (Auth::user()->isAdmin())
           <li class="nav-item">
-              <a class="nav-link" href="{{ url('/controlPanel') }}">Control Pannel</a>
+              <a class="nav-link" href="{{ url('/controlPanel') }}">Control Panel</a>
             </li>
           @endif  
         @endif
