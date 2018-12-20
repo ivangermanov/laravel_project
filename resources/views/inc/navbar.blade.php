@@ -40,7 +40,6 @@
             </a>
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            {{-- TODO: authenticate create breed route --}}
             <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
             <a class="dropdown-item" href="{{ route('breeds.create') }}">Create Breed</a>
             <a class="dropdown-item" href="{{ route('profile.profile') }}">Profile</a>

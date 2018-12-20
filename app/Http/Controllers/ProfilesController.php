@@ -132,9 +132,6 @@ class ProfilesController extends Controller
                 // Get filename without extension
                 $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
                 $filename = str_replace('_', '', $filename);
-                
-                // Get file extension
-                $extension = $request->file('image')->getClientOriginalExtension();
 
                 // Filename to store with extension
                 $filenametostore = $filename . '_' . time() . '.png';

@@ -28,7 +28,7 @@ class BreedsController extends Controller
      */
     public function index()
     {
-        $breeds = Breed::orderBy('breed')->paginate(9);
+        $breeds = Breed::with('user')->orderBy('breed')->paginate(9);
         return view('breeds.index')->with('breeds', $breeds);
     }
 
@@ -78,7 +78,6 @@ class BreedsController extends Controller
         // Handling the image
         if ($request->hasFile('image')) {
             if ($request->file('image')->isValid()) {
-                // Store image
                 // Get filename with extension
                 $filenamewithextension = $request->file('image')->getClientOriginalName();
 
@@ -86,21 +85,15 @@ class BreedsController extends Controller
                 $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
                 $filename = str_replace('_', '', $filename);
 
-                // Get file extension
-                $extension = $request->file('image')->getClientOriginalExtension();
-
                 // Filename to store with extension
                 $filenametostore = $filename . '_' . time() . '.png';
 
-                $img = Image::make($request->file('image')->getRealPath())->resize(1280, 720)->encode('png');
-                $img->stream();
+                $watermark = Storage::get('public/images/miscellaneous/logo.png');
+                $img = Image::make($request->file('image')->getRealPath())->encode('png')->insert($watermark, 'bottom-right', 10)->resize(1280, 720)->stream();
+                $imgSmall = Image::make($request->file('image')->getRealPath())->encode('png')->insert($watermark, 'bottom-right', 10)->resize(350, 200)->stream();
+
                 Storage::put('public/images/breeds/posts/' . $filenametostore, $img);
-
-                // Resize image here
-                $img = Image::make($request->file('image')->getRealPath())->resize(350, 196)->encode('png');
-                $img->stream();
-
-                Storage::put('public/images/breeds/' . $filenametostore, $img);
+                Storage::put('public/images/breeds/' . $filenametostore, $imgSmall);
 
                 // Store in DB
                 $breed->img_link = Storage::url('public/images/breeds/' . $filenametostore);
@@ -193,21 +186,15 @@ class BreedsController extends Controller
                     $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
                     $filename = str_replace('_', '', $filename);
 
-                    // Get file extension
-                    $extension = $request->file('image')->getClientOriginalExtension();
-
                     // Filename to store with extension
                     $filenametostore = $filename . '_' . time() . '.png';
 
-                    $img = Image::make($request->file('image')->getRealPath())->resize(1280, 720)->encode('png');
-                    $img->stream();
+                    $watermark = Storage::get('public/images/miscellaneous/logo.png');
+                    $img = Image::make($request->file('image')->getRealPath())->encode('png')->insert($watermark, 'bottom-right', 10)->resize(1280, 720)->stream();
+                    $imgSmall = Image::make($request->file('image')->getRealPath())->encode('png')->insert($watermark, 'bottom-right', 10)->resize(350, 200)->stream();
+
                     Storage::put('public/images/breeds/posts/' . $filenametostore, $img);
-
-                    // Resize image here
-                    $img = Image::make($request->file('image')->getRealPath())->resize(350, 200)->encode('png');
-                    $img->stream();
-
-                    Storage::put('public/images/breeds/' . $filenametostore, $img);
+                    Storage::put('public/images/breeds/' . $filenametostore, $imgSmall);
 
                     // Store in DB
                     $breed->img_link = Storage::url('public/images/breeds/' . $filenametostore);
