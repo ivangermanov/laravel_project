@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Image;
+use PDF;
 
 class BreedsController extends Controller
 {
@@ -227,5 +228,31 @@ class BreedsController extends Controller
         }
 
         return redirect('/breeds')->with('error', 'You are not the author of this breed!');
+    }
+
+    /**
+     * Exports the selected breed to PDF file
+     *
+     *
+     */
+    public function export_pdf($id)
+    {
+        // TEMP
+        $breed = Breed::find($id);
+        $traits = explode(", ", $breed['traits']);
+        $breed['traits']=$traits;
+        // view('breeds.pdf');
+        $pdf = PDF::loadView('breeds.pdf', $breed);
+
+        // Download the file using download function
+        return $pdf->download($breed->breed.'.pdf');
+    }
+
+    private function convert_breed_to_html($id) {
+        // Fetch breed from database
+        $breed = Breed::find($id);
+        $traits = explode(", ", $breed['traits']);
+
+
     }
 }
