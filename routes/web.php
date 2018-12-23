@@ -16,6 +16,7 @@ Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/controlPanel', 'PagesController@controlPanel')->name('controlPanel');
 
 Route::resource('breeds', 'BreedsController');
+Route::get('/breeds/{id}/pdf','BreedsController@export_pdf');
 
 // Example route with parameter
 // Route::get('/greeting/{name}', 'PagesController@greeting')->name('greeting');
