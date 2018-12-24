@@ -13,7 +13,6 @@
 
 Route::get('/', 'PagesController@index')->name('index');
 Route::get('/about', 'PagesController@about')->name('about');
-Route::get('/controlPanel', 'PagesController@controlPanel')->name('controlPanel');
 
 Route::resource('breeds', 'BreedsController');
 Route::get('/breeds/{id}/pdf','BreedsController@export_pdf');
@@ -26,6 +25,8 @@ Auth::routes();
 
 // Handling for routes which need authentication
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/controlPanel', 'PagesController@controlPanel')->name('controlPanel');
+    Route::get('/export_users','PagesController@export_xlsx');
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/profile', 'ProfilesController@index')->name('profile.profile');
     Route::get('/profile/gallery', 'ProfilesController@show_gallery')->name('profile.gallery');

@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Storage;
+
+use App\Breed;
+use App\Exports\UsersExport;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Breed;
-use App\User;
-
+use Maatwebsite\Excel\Facades\Excel;
 class PagesController extends Controller
 {
     public function index()
@@ -32,27 +33,24 @@ class PagesController extends Controller
     }
 
     public function controlPanel()
-    { 
-        if (Auth::check())
-        {
-            if (Auth::user()->isAdmin())
-            {
+    {
+        if (Auth::check()) {
+            if (Auth::user()->isAdmin()) {
                 $sbreeds = DB::table('breeds')->where('reviewed', 0)->get();
                 $susers = DB::table('users')->get();
                 $breeds = DB::table('breeds')
-                ->select()
-                ->where('reviewed', 0)
-                ->orderBy(DB::raw('ifnull(updated_at, created_at)'))
-                ->paginate(10,['*'],'breed');
-                
-                $users = User::orderBy('created_at', 'desc')->paginate(10,['*'],'user');
+                    ->select()
+                    ->where('reviewed', 0)
+                    ->orderBy(DB::raw('ifnull(updated_at, created_at)'))
+                    ->paginate(10, ['*'], 'breed');
+
+                $users = User::orderBy('created_at', 'desc')->paginate(10, ['*'], 'user');
                 $sum = 0;
-                for ($i=0; $i < count($sbreeds); $i++) 
-                { 
+                for ($i = 0; $i < count($sbreeds); $i++) {
                     $sum = $sum + $sbreeds[$i]->visits;
                 }
                 $avgVisits = $sum / count($sbreeds);
-                $avgPosts = count($sbreeds)/count($susers);
+                $avgPosts = count($sbreeds) / count($susers);
                 return view('pages.controlPanel')
                     ->with('breeds', $breeds)
                     ->with('users', $users)
@@ -60,23 +58,18 @@ class PagesController extends Controller
                     ->with('avgPosts', $avgPosts)
                     ->with('totalBreeds', count($sbreeds))
                     ->with('totalUsers', count($susers));
-            }
-            else
-            {
+            } else {
                 return redirect('/');
             }
-        }
-        else
-        {
+        } else {
             return redirect('/');
         }
     }
-    // Example controller handling route with parameter
-    // public function greeting($name)
-    // {
-    //     // Returns view of greeting page
-    //     // with optional parameter $name
-    //     // which prints a greeting on screen
-    //     return view('pages.greeting')->with('name', $name);
-    // }
+    
+    public function export_xlsx()
+    {
+        if (Auth::user()->isAdmin()) {
+            return Excel::download(new UsersExport, 'users.xlsx');
+        }
+    }
 }

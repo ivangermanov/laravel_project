@@ -1,5 +1,5 @@
 @extends('layouts.app') 
-@section('title', 'About') 
+@section('title', 'Control   Panel') 
 @section('content')
 <div class="row">
     <div class="col-lg-4">
@@ -47,6 +47,7 @@
           </h4>
         </rd-widget-header>
         <rd-widget-body classes="medium no-padding">
+            <a href="/export_users" class="btn btn-success btn-block mt-2 mb-2"><i class="fa fa-download"></i><span class="ml-1">Export XLSX</span></a>
           <div class="table-responsive">
             <table class="table table-striped">
               <tbody>

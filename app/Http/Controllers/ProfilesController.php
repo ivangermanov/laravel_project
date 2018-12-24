@@ -191,4 +191,6 @@ class ProfilesController extends Controller
         $user->delete();
         return redirect('/');
     }
+
+
 }
