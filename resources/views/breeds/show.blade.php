@@ -162,7 +162,7 @@
         @if (!Auth::guest())
             @if (Auth::id() === $breed->user_id || Auth::user()->isAdmin())
                 <div>
-                    <a href="/breeds/{{$breed->id}}/edit" class="btn btn-primary btn-block mb-2 mt-3"><i class="fa fa-cog"></i><span class="ml-1">Edit</span></a>
+                    <a href="/breeds/{{$breed->id}}/edit" class="btn btn-primary btn-block mb-2 mt-2"><i class="fa fa-cog"></i><span class="ml-1">Edit</span></a>
                     {!!Form::open(['action' => ['BreedsController@destroy', $breed->id, 'method'=>'POST']])!!}
                         {{Form::hidden('_method', 'DELETE')}}
                         {{Form::button('<i class="fa fa-trash"></i> Delete', ['class' => 'btn btn-danger btn-block', 'type'=>'submit'])}}
@@ -170,6 +170,7 @@
                 </div>
             @endif
         @endif
+        <a href="/breeds/{{$breed->id}}/pdf" class="btn btn-success btn-block mt-2"><i class="fa fa-download"></i><span class="ml-1">Export PDF</span></a>
     </div>
 </div>
 

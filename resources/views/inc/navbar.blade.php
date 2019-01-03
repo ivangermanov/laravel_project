@@ -17,7 +17,7 @@
         @if (Auth::check())
           @if (Auth::user()->isAdmin())
           <li class="nav-item">
-              <a class="nav-link" href="{{ url('/controlPanel') }}">Control Pannel</a>
+              <a class="nav-link" href="{{ url('/controlPanel') }}">Control Panel</a>
             </li>
           @endif  
         @endif
@@ -40,7 +40,6 @@
             </a>
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            {{-- TODO: authenticate create breed route --}}
             <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
             <a class="dropdown-item" href="{{ route('breeds.create') }}">Create Breed</a>
             <a class="dropdown-item" href="{{ route('profile.profile') }}">Profile</a>

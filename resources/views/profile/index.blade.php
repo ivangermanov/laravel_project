@@ -142,7 +142,7 @@
 
   function offHover()
   {
-      $("#avatar").attr('src', '{{Auth::User()->img_link}}');
+    $("#avatar").attr('src', '{{Auth::User()->img_link}}');
   }
 
 </script>
