@@ -35,8 +35,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/profile/destroy', 'ProfilesController@destroy')->name('profile.destroy');
 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> de07cc320678e55a7f73cdaa97c222aa76a957ad
 Route::get('/profile/{id}', 'ProfilesController@show')->name('profile.show');
