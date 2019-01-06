@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//list breeds
+Route::get('breeds', 'BreedsApiController@index');
+
+//list particular breed
+Route::get('breeds/{id}', 'BreedsApiController@show');
+
+//delete a breed
+Route::delete('breeds/{id}', 'BreedsApiController@destroy');
+

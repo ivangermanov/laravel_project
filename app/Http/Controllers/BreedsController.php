@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Breed;
 use App\User;
+use App\Breed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +29,9 @@ class BreedsController extends Controller
      */
     public function index()
     {
-        $breeds = Breed::with('user')->orderBy('breed')->paginate(9);
+
+        //$breeds = Breed::with('user')->orderBy('breed')->paginate(9);
+        $breeds = (array)request('GET','http://localhost:8000/api/breeds');
         return view('breeds.index')->with('breeds', $breeds);
     }
 
