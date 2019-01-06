@@ -30,8 +30,7 @@ class BreedsController extends Controller
     public function index()
     {
 
-        //$breeds = Breed::with('user')->orderBy('breed')->paginate(9);
-        $breeds = (array)request('GET','http://localhost:8000/api/breeds');
+        $breeds = Breed::with('user')->orderBy('breed')->paginate(9);
         return view('breeds.index')->with('breeds', $breeds);
     }
 

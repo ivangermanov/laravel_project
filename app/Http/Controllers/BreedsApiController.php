@@ -12,6 +12,7 @@ class BreedsApiController extends Controller
     public function index()
     {
         $breeds = Breed::with('user')->orderBy('breed')->get();//->paginate(9);
+        
         return BreedResource::collection($breeds);
     }
     
@@ -20,7 +21,7 @@ class BreedsApiController extends Controller
         $breed = Breed::FindOrFail($id);
         //$breed->visits = $breed->visits + 1;
         //$breed->save();
-        return response()->json(BreedResource::collection($breed));
+        return new BreedResource($breed);
     }
 
     public function destroy($id)
