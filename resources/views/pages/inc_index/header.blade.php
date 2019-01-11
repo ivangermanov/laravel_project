@@ -25,7 +25,7 @@
                     <img class="d-block w-100" src="{{$popularBreeds[$i]->img_link}}">
                     <div class="card card-sm carousel-caption bg-dark">
                         <a href="/breeds/{{$popularBreeds[$i]->id}}"><h3>{{$popularBreeds[$i]->breed}}</h3></a>
-                        <p>{{mb_strimwidth($popularBreeds[$i]->history, 0, 200, '...')}}</p>
+                        <p>{{mb_strimwidth(strip_tags($popularBreeds[$i]->history), 0, 200, '...')}}</p>
                     </div>
                 </div>
             @endif

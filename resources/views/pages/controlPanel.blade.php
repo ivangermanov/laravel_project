@@ -47,7 +47,6 @@
           </h4>
         </rd-widget-header>
         <rd-widget-body classes="medium no-padding">
-            <a href="/export_users" class="btn btn-success btn-block mt-2 mb-2"><i class="fa fa-download"></i><span class="ml-1">Export XLSX</span></a>
           <div class="table-responsive">
             <table class="table table-striped">
               <tbody>
@@ -66,6 +65,7 @@
           </div>      
         </rd-widget-body>
       </rd-widget>
+      <a href="/export_users" class="btn btn-success btn-block mt-2 mb-2"><i class="fa fa-download"></i><span class="ml-1">Export XLSX</span></a>
     </div>
     <div class="col-lg-4">
       <rd-widget>

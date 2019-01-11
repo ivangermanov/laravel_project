@@ -19,8 +19,8 @@ class BreedsApiController extends Controller
     public function show($id)
     {
         $breed = Breed::FindOrFail($id);
-        //$breed->visits = $breed->visits + 1;
-        //$breed->save();
+        $breed->visits = $breed->visits + 1;
+        $breed->save();
         return new BreedResource($breed);
     }
 
